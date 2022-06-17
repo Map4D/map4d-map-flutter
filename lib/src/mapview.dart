@@ -198,8 +198,8 @@ class _MFMapViewState extends State<MFMapView> {
           );
         },
         onCreatePlatformView: (PlatformViewCreationParams params) {
-          final SurfaceAndroidViewController controller =
-          PlatformViewsService.initSurfaceAndroidView(
+          final AndroidViewController controller =
+            PlatformViewsService.initExpensiveAndroidView(
             id: params.id,
             viewType: viewType,
             layoutDirection: TextDirection.ltr,
@@ -214,7 +214,7 @@ class _MFMapViewState extends State<MFMapView> {
             onPlatformViewCreated,
           );
 
-          controller.create();
+          // controller.create();
           return controller;
         },
       );
