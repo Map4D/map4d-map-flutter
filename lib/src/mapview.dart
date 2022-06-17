@@ -185,12 +185,46 @@ class _MFMapViewState extends State<MFMapView> {
     };
 
     if (defaultTargetPlatform == TargetPlatform.android) {
-      return AndroidView(
+      return PlatformViewLink(
         viewType: viewType,
-        onPlatformViewCreated: onPlatformViewCreated,
-        creationParams: creationParams,
-        creationParamsCodec: const StandardMessageCodec(),
+        surfaceFactory: (
+            BuildContext context,
+            PlatformViewController controller,
+            ) {
+          return AndroidViewSurface(
+            controller: controller as AndroidViewController,
+            gestureRecognizers: const <Factory<OneSequenceGestureRecognizer>>{},
+            hitTestBehavior: PlatformViewHitTestBehavior.opaque,
+          );
+        },
+        onCreatePlatformView: (PlatformViewCreationParams params) {
+          final SurfaceAndroidViewController controller =
+          PlatformViewsService.initSurfaceAndroidView(
+            id: params.id,
+            viewType: viewType,
+            layoutDirection: TextDirection.ltr,
+            creationParams: creationParams,
+            creationParamsCodec: const StandardMessageCodec(),
+            onFocus: () => params.onFocusChanged(true),
+          );
+          controller.addOnPlatformViewCreatedListener(
+            params.onPlatformViewCreated,
+          );
+          controller.addOnPlatformViewCreatedListener(
+            onPlatformViewCreated,
+          );
+
+          controller.create();
+          return controller;
+        },
       );
+
+      // return AndroidView(
+      //   viewType: viewType,
+      //   onPlatformViewCreated: onPlatformViewCreated,
+      //   creationParams: creationParams,
+      //   creationParamsCodec: const StandardMessageCodec(),
+      // );
     } else if (defaultTargetPlatform == TargetPlatform.iOS) {
       return UiKitView(
         viewType: viewType,
