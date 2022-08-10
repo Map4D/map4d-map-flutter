@@ -91,9 +91,7 @@ class PlaceMarkerBodyState extends State<PlaceMarkerBody> {
   }
 
   void _onInfoWindowTapped(MFMarkerId markerId) {
-    setState(() {
-      print("Did tap info window of " + markerId.value);
-    });
+    print("Did tap info window of " + markerId.value);
   }
 
   void _onMarkerTapped(MFMarkerId markerId) {
