@@ -2,6 +2,7 @@ package vn.map4d.map.map4d_map;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Point;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -150,6 +151,37 @@ class Convert {
   static MFLocationCoordinate toCoordinate(Object o) {
     final List<?> data = toList(o);
     return new MFLocationCoordinate(toDouble(data.get(0)), toDouble(data.get(1)));
+  }
+
+  static MFLocationCoordinate hashMapToCoordinate(Object o) {
+    final Map<?, ?> data = toMap(o);
+    final Object coordinate = data.get("latLng");
+    Object lat = null;
+    Object lng = null;
+    if (coordinate != null) {
+      lat = toList(coordinate).get(0);
+      lng = toList(coordinate).get(1);
+    }
+    return new MFLocationCoordinate(toDouble(lat), toDouble(lng));
+  }
+
+  static Point toPoint(Object o) {
+    final Map<?, ?> data = toMap(o);
+    final Object coordinate = data.get("coordinate");
+    Object x = null;
+    Object y = null;
+    if (coordinate != null) {
+      x = toMap(coordinate).get("x");
+      y = toMap(coordinate).get("y");
+    }
+    return new Point((int) x, (int) y);
+  }
+
+  static Map<String, Integer> pointToJson(Point point) {
+    final Map<String, Integer> data = new HashMap<>(2);
+    data.put("x", point.x);
+    data.put("y", point.y);
+    return data;
   }
 
   static MFMapType toMapType(Object o) {
@@ -743,6 +775,10 @@ class Convert {
     final Object visible = data.get("visible");
     if (visible != null) {
       sink.setVisible(toBoolean(visible));
+    }
+    final Object transparency = data.get("transparency");
+    if (transparency != null) {
+      sink.setOpacity(1.f - toFloat(transparency));
     }
     final Object urlPattern = data.get("urlPattern");
     if (urlPattern != null) {

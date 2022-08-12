@@ -3,6 +3,7 @@ package vn.map4d.map.map4d_map;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -356,6 +357,34 @@ public final class FMFMapViewController implements
       }
       case "map#getZoomLevel": {
         result.success(map4D.getCameraPosition().getZoom());
+        break;
+      }
+      case "map#getScreenCoordinate": {
+        if (map4D != null) {
+          MFLocationCoordinate coordinate = Convert.hashMapToCoordinate(call.arguments);
+          Point screenLocation = map4D.getProjection().pointForCoordinate(coordinate);
+          result.success(Convert.pointToJson(screenLocation));
+        }
+        else {
+          result.error(
+            "Map4D uninitialized",
+            "getScreenCoordinate called prior to map initialization",
+            null);
+        }
+        break;
+      }
+      case "map#getLatLng": {
+        if (map4D != null) {
+          Point point = Convert.toPoint(call.arguments);
+          MFLocationCoordinate coordinate = map4D.getProjection().coordinateForPoint(point);
+          result.success(Convert.latLngToJson(coordinate));
+        }
+        else {
+          result.error(
+            "Map4D uninitialized",
+            "getLatLng called prior to map initialization",
+            null);
+        }
         break;
       }
       case "circles#update": {
