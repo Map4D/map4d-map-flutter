@@ -58,7 +58,7 @@ class ImageOverlayBodyState extends State<ImageOverlayBody> {
 
   void _changeTransparency() {
     if (_imageOverlay != null) {
-      final transparency = 0.9 - _imageOverlay!.transparency;
+      final transparency = 0.5 - _imageOverlay!.transparency;
       final overlayWithNewTransparency = _imageOverlay!.copyWith(
         transparencyParam: transparency,
       );
@@ -102,15 +102,15 @@ class ImageOverlayBodyState extends State<ImageOverlayBody> {
         ),
         TextButton(
           child: const Text('Add image overlay'),
-          onPressed: _addImageOverlay,
+          onPressed: _imageOverlay == null ? _addImageOverlay : null,
         ),
         TextButton(
           child: const Text('Remove image overlay'),
-          onPressed: _removeImageOverlay,
+          onPressed: _imageOverlay != null ? _removeImageOverlay : null,
         ),
         TextButton(
           child: const Text('Change transparency'),
-          onPressed: _changeTransparency,
+          onPressed: _imageOverlay != null ? _changeTransparency : null,
         ),
       ],
     );

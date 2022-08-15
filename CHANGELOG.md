@@ -1,6 +1,13 @@
+## 2.4.0
+
+* Add MFImageOverlay to display image layer
+* Support transparency for tile overlay
+* Fixed bugs
+
 ## 2.3.0
 
-* Upgrade Map4dMap SDK dependencies to 2.4.0
+* Upgrade Map4dMap SDK dependencies to 2.4.+
+* Fixed bugs
 
 ## 2.2.2
 
@@ -12,7 +19,7 @@
 
 ## 2.2.0
 
-* Upgrade Map4dMap SDK dependencies to 2.1.0
+* Upgrade Map4dMap SDK dependencies to 2.1.+
 * Add 2 map type: satellite, map 3D
 * Deprecated MFMapViewController.enable3DMode and MFMapView.onModeChange
 * Fixed bugs & improve performance
