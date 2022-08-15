@@ -35,7 +35,8 @@ class _MyHomePageState extends State<MyHomePage> {
   MFBitmap? _markerIcon;
   Map<MFMarkerId, MFMarker> markers = <MFMarkerId, MFMarker>{};
 
-  final CustomInfoWindowController _customInfoWindowController = CustomInfoWindowController();
+  final CustomInfoWindowController _customInfoWindowController =
+      CustomInfoWindowController();
 
   @override
   void dispose() {
@@ -47,39 +48,38 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     _createMarkerImageFromAsset(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Stack(
-        children: <Widget>[
-          MFMapView(
-            onMapCreated: _onMapCreated,
-            onTap: (position) {
-              _customInfoWindowController.hideInfoWindow!();
-            },
-            onCameraMove: (position) {
-              _customInfoWindowController.onCameraMove!();
-            },
-            markers: Set<MFMarker>.of(markers.values)
-          ),
-          CustomInfoWindow(
-            controller: _customInfoWindowController,
-            height: 75,
-            width: 150,
-            offset: 70,
-          ),
-        ],
-      )
-      
-    );
+        appBar: AppBar(
+          title: Text(widget.title),
+        ),
+        body: Stack(
+          children: <Widget>[
+            MFMapView(
+                onMapCreated: _onMapCreated,
+                onTap: (position) {
+                  _customInfoWindowController.hideInfoWindow!();
+                },
+                onCameraMove: (position) {
+                  _customInfoWindowController.onCameraMove!();
+                },
+                markers: Set<MFMarker>.of(markers.values)),
+            CustomInfoWindow(
+              controller: _customInfoWindowController,
+              height: 75,
+              width: 150,
+              offset: 70,
+            ),
+          ],
+        ));
   }
 
   Future<void> _createMarkerImageFromAsset(BuildContext context) async {
     if (_markerIcon != null) {
       return;
     }
-    final ImageConfiguration imageConfiguration = createLocalImageConfiguration(context);
-    _markerIcon = await MFBitmap.fromAssetImage(imageConfiguration, 'assets/shop.png');
+    final ImageConfiguration imageConfiguration =
+        createLocalImageConfiguration(context);
+    _markerIcon =
+        await MFBitmap.fromAssetImage(imageConfiguration, 'assets/shop.png');
   }
 
   void _onMapCreated(MFMapViewController controller) async {
@@ -87,14 +87,14 @@ class _MyHomePageState extends State<MyHomePage> {
     final camera = (await controller.getCameraPosition())!;
     const markerId = MFMarkerId('marker_custom');
     final marker = MFMarker(
-      consumeTapEvents: true,
-      markerId: markerId,
-      position: camera.target,
-      anchor: const Offset(0.5, 1.0),
-      icon: _markerIcon ?? MFBitmap.defaultIcon,
-      onTap: () {
-        _onMarkerTapped(markerId);
-      });
+        consumeTapEvents: true,
+        markerId: markerId,
+        position: camera.target,
+        anchor: const Offset(0.5, 1.0),
+        icon: _markerIcon ?? MFBitmap.defaultIcon,
+        onTap: () {
+          _onMarkerTapped(markerId);
+        });
     setState(() {
       markers[markerId] = marker;
     });

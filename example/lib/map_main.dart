@@ -149,8 +149,9 @@ class _MyAppState extends State<MyApp> {
     _controller.getLatLng(p).then((latlng) {
       print('Convert point ${p.toJson()} to latlng: ${latlng.toJson()}');
       _controller.getScreenCoordinate(latlng).then((value) => {
-        print('Convert latlng: ${latlng.toJson()} to value: ${value.toJson()}')
-      });
+            print(
+                'Convert latlng: ${latlng.toJson()} to value: ${value.toJson()}')
+          });
     });
   }
 

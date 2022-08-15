@@ -22,12 +22,13 @@ class Map4dSample extends StatefulWidget {
 }
 
 class _Map4dSampleState extends State<Map4dSample> {
-
   Completer<MFMapViewController> _controller = Completer();
   bool _is3dMode = false;
 
-  static final MFLatLng _kLandmark81 = MFLatLng(10.794630856464138, 106.72229460050636);
-  static final MFCameraPosition _kInitialCameraPosition = MFCameraPosition(target: _kLandmark81, zoom: 16);
+  static final MFLatLng _kLandmark81 =
+      MFLatLng(10.794630856464138, 106.72229460050636);
+  static final MFCameraPosition _kInitialCameraPosition =
+      MFCameraPosition(target: _kLandmark81, zoom: 16);
 
   @override
   Widget build(BuildContext context) {
@@ -164,8 +165,7 @@ class _Map4dSampleState extends State<Map4dSample> {
                         markers: {
                           MFMarker(
                               markerId: MFMarkerId('position'),
-                              position:
-                              MFLatLng(16.024634, 108.209217)),
+                              position: MFLatLng(16.024634, 108.209217)),
                         },
                       ),
                       Positioned(
@@ -189,5 +189,4 @@ class _Map4dSampleState extends State<Map4dSample> {
       ),
     );
   }
-
 }

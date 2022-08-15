@@ -46,10 +46,9 @@ class ImageOverlayBodyState extends State<ImageOverlayBody> {
     final southwest = MFLatLng(16.020262, 108.189487);
     final bounds = MFLatLngBounds(southwest: southwest, northeast: northeast);
     final imageOverlay = MFImageOverlay(
-      imageOverlayId: MFImageOverlayId('image_overlay_1'),
-      image: _image!,
-      bounds: bounds
-    );
+        imageOverlayId: MFImageOverlayId('image_overlay_1'),
+        image: _image!,
+        bounds: bounds);
 
     setState(() {
       _imageOverlay = imageOverlay;
@@ -70,8 +69,10 @@ class ImageOverlayBodyState extends State<ImageOverlayBody> {
 
   Future<void> _createImageFromAsset(BuildContext context) async {
     if (_image == null) {
-      final ImageConfiguration imageConfiguration = createLocalImageConfiguration(context);
-      _image = await MFBitmap.fromAssetImage(imageConfiguration, 'assets/image_overlay.jpg');
+      final ImageConfiguration imageConfiguration =
+          createLocalImageConfiguration(context);
+      _image = await MFBitmap.fromAssetImage(
+          imageConfiguration, 'assets/image_overlay.jpg');
     }
   }
 

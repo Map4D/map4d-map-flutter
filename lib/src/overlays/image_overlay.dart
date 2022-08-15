@@ -30,7 +30,7 @@ class MFImageOverlay implements MapsObject {
   @override
   MFImageOverlayId get mapsId => imageOverlayId;
 
-  /// 
+  ///
   final MFBitmap image;
 
   ///
@@ -100,5 +100,6 @@ class MFImageOverlay implements MapsObject {
   }
 
   @override
-  int get hashCode => hashValues(imageOverlayId, image, bounds, transparency, zIndex, visible);
+  int get hashCode =>
+      hashValues(imageOverlayId, image, bounds, transparency, zIndex, visible);
 }

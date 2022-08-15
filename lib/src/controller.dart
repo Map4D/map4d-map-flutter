@@ -186,13 +186,17 @@ class MFMapViewController {
 
   /// Returns the [MFScreenCoordinate] for a given viewport [LatLng].
   Future<MFScreenCoordinate> getScreenCoordinate(MFLatLng latLng) async {
-    final Map<String, dynamic> coordinate = (await _channel.invokeMapMethod<String, dynamic>('map#getScreenCoordinate', <String, dynamic>{'latLng': latLng.toJson()}))!;
+    final Map<String, dynamic> coordinate = (await _channel
+        .invokeMapMethod<String, dynamic>('map#getScreenCoordinate',
+            <String, dynamic>{'latLng': latLng.toJson()}))!;
     return MFScreenCoordinate.fromJson(coordinate)!;
   }
 
   /// Returns the [LatLng] for a `screenCoordinate` (in pixels) of the viewport.
   Future<MFLatLng> getLatLng(MFScreenCoordinate screenCoordinate) async {
-    final List<dynamic> latLng = (await _channel.invokeListMethod<dynamic>('map#getLatLng', <String, dynamic>{'coordinate': screenCoordinate.toJson()}))!;
+    final List<dynamic> latLng = (await _channel.invokeListMethod<dynamic>(
+        'map#getLatLng',
+        <String, dynamic>{'coordinate': screenCoordinate.toJson()}))!;
     return MFLatLng.fromJson(latLng)!;
   }
 
@@ -219,7 +223,6 @@ class MFMapViewController {
     return _channel.invokeMethod<void>(
         'tileOverlays#update', tileOverlayUpdates.toJson());
   }
-
 
   /// Updates image overlays configuration.
   Future<void> _updateImageOverlays(ImageOverlayUpdates imageOverlayUpdates) {

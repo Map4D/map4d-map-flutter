@@ -10,7 +10,7 @@ class CustomInfoWindowController {
   /// Notifies [CustomInfoWindow] to redraw as per change in position.
   VoidCallback? onCameraMove;
 
-  /// Hides [CustomInfoWindow]. 
+  /// Hides [CustomInfoWindow].
   VoidCallback? hideInfoWindow;
 
   /// Holds [mapController] for calculating [CustomInfoWindow] position.
@@ -74,10 +74,12 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
       return;
     }
 
-    final screenCoordinate = await widget.controller.mapController!.getScreenCoordinate(_latLng!);
+    final screenCoordinate =
+        await widget.controller.mapController!.getScreenCoordinate(_latLng!);
 
     double left = screenCoordinate.x.toDouble() - (widget.width / 2);
-    double top = screenCoordinate.y.toDouble() - (widget.offset + widget.height);
+    double top =
+        screenCoordinate.y.toDouble() - (widget.offset + widget.height);
     setState(() {
       _showNow = true;
       _leftMargin = left;

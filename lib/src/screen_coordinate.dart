@@ -36,7 +36,8 @@ class MFScreenCoordinate {
   }
 
   @override
-  String toString() => '${objectRuntimeType(this, 'MFScreenCoordinate')}($x, $y)';
+  String toString() =>
+      '${objectRuntimeType(this, 'MFScreenCoordinate')}($x, $y)';
 
   @override
   bool operator ==(Object other) {

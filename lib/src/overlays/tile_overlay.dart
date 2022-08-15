@@ -102,5 +102,6 @@ class MFTileOverlay implements MapsObject {
   }
 
   @override
-  int get hashCode => hashValues(tileOverlayId, urlPattern, transparency, zIndex, visible);
+  int get hashCode =>
+      hashValues(tileOverlayId, urlPattern, transparency, zIndex, visible);
 }

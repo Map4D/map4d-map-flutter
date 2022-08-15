@@ -158,8 +158,10 @@ class _MFMapViewState extends State<MFMapView> {
   final Completer<MFMapViewController> _controller =
       Completer<MFMapViewController>();
   late _MFMapViewOptions _mapOptions;
-  Map<MFTileOverlayId, MFTileOverlay> _tileOverlays = <MFTileOverlayId, MFTileOverlay>{};
-  Map<MFImageOverlayId, MFImageOverlay> _imageOverlays = <MFImageOverlayId, MFImageOverlay>{};
+  Map<MFTileOverlayId, MFTileOverlay> _tileOverlays =
+      <MFTileOverlayId, MFTileOverlay>{};
+  Map<MFImageOverlayId, MFImageOverlay> _imageOverlays =
+      <MFImageOverlayId, MFImageOverlay>{};
   Map<MFPOIId, MFPOI> _pois = <MFPOIId, MFPOI>{};
   Map<MFBuildingId, MFBuilding> _buildings = <MFBuildingId, MFBuilding>{};
   Map<MFPolylineId, MFPolyline> _polylines = <MFPolylineId, MFPolyline>{};

@@ -26,8 +26,10 @@ class _Map4dSampleState extends State<Map4dSample> {
   Completer<MFMapViewController> _controller = Completer();
   Map<MFMarkerId, MFMarker> markers = <MFMarkerId, MFMarker>{};
   late MFMarkerId markerId;
-  static final MFLatLng _kLandmark81 = MFLatLng(10.794630856464138, 106.72229460050636);
-  static final MFCameraPosition _kInitialCameraPosition = MFCameraPosition(target: _kLandmark81, zoom: 16);
+  static final MFLatLng _kLandmark81 =
+      MFLatLng(10.794630856464138, 106.72229460050636);
+  static final MFCameraPosition _kInitialCameraPosition =
+      MFCameraPosition(target: _kLandmark81, zoom: 16);
 
   @override
   Widget build(BuildContext context) {
@@ -92,9 +94,13 @@ class _Map4dSampleState extends State<Map4dSample> {
 
   Future<void> _createMarkerImageFromAsset(BuildContext context) async {
     if (_markerIcon == null) {
-      final ImageConfiguration imageConfiguration = createLocalImageConfiguration(context, size: Size(100, 100));
-      MFBitmap bitmap = await MFBitmap.fromAssetImage(ImageConfiguration(size: Size(100, 100)), 'assets/ic_marker_tracking.png');
-      final markerIcon = await MFBitmap.fromAssetImage(imageConfiguration, 'assets/ic_marker_tracking.png');
+      final ImageConfiguration imageConfiguration =
+          createLocalImageConfiguration(context, size: Size(100, 100));
+      MFBitmap bitmap = await MFBitmap.fromAssetImage(
+          ImageConfiguration(size: Size(100, 100)),
+          'assets/ic_marker_tracking.png');
+      final markerIcon = await MFBitmap.fromAssetImage(
+          imageConfiguration, 'assets/ic_marker_tracking.png');
       print('bitmap: ${bitmap.toJson()}');
       print('markerIcon: ${markerIcon.toJson()}');
       _markerIcon = bitmap;
@@ -107,5 +113,4 @@ class _Map4dSampleState extends State<Map4dSample> {
   void _onPOITap(String placeId, String name, MFLatLng location) {
     print('Tap on place: $placeId, name: $name, location: $location');
   }
-
 }

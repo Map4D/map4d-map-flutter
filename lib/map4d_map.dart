@@ -53,11 +53,7 @@ export 'src/annotations/annotations.dart'
         MFBuildingId;
 
 export 'src/overlays/overlays.dart'
-    show
-        MFTileOverlay,
-        MFTileOverlayId,
-        MFImageOverlay,
-        MFImageOverlayId;
+    show MFTileOverlay, MFTileOverlayId, MFImageOverlay, MFImageOverlayId;
 
 export 'src/directions/directions.dart'
     show MFDirectionsRenderer, MFDirectionsRendererId, MFDirectionsPOIOptions;
