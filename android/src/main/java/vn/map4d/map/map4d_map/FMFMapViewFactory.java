@@ -63,6 +63,9 @@ public class FMFMapViewFactory extends PlatformViewFactory {
     if (creationParams.containsKey("tileOverlaysToAdd")) {
       builder.setInitialTileOverlays((List<Map<String, ?>>) creationParams.get("tileOverlaysToAdd"));
     }
+    if (creationParams.containsKey("imageOverlaysToAdd")) {
+      builder.setInitialImageOverlays((List<Map<String, ?>>) creationParams.get("imageOverlaysToAdd"));
+    }
     if (creationParams.containsKey("directionsRenderersToAdd")) {
       builder.setInitialDirectionsRenderers(creationParams.get("directionsRenderersToAdd"));
     }

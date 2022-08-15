@@ -1,8 +1,5 @@
 package vn.map4d.map.map4d_map;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import vn.map4d.map.overlays.MFTileOverlay;
 import vn.map4d.map.overlays.MFTileProvider;
 
@@ -40,5 +37,10 @@ class FMFTileOverlayController implements FMFTileOverlaySink {
   @Override
   public void setTileProvider(MFTileProvider tileProvider) {
     // You can not change tile provider after creation
+  }
+
+  @Override
+  public void setOpacity(float opacity) {
+    tileOverlay.setOpacity(opacity);
   }
 }

@@ -89,7 +89,7 @@ class ImageOverlayBodyState extends State<ImageOverlayBody> {
         Center(
           child: SizedBox(
             width: 350.0,
-            height: 600.0,
+            height: 400.0,
             child: MFMapView(
               initialCameraPosition: const MFCameraPosition(
                 target: MFLatLng(16.043208, 108.198382),
