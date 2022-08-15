@@ -86,6 +86,7 @@ public final class FMFMapViewController implements
   private final FMFPOIsController poisController;
   private final FMFBuildingsController buildingsController;
   private final FMFTileOverlaysController tileOverlaysController;
+  private final FMFImageOverlaysController imageOverlaysController;
   private final FMFDirectionsRenderersController directionsRenderersController;
 
   private List<Object> initialCircles;
@@ -96,6 +97,7 @@ public final class FMFMapViewController implements
   private List<Object> initialBuildings;
   private List<Object> initialDirectionsRenderers;
   private List<Map<String, ?>> initialTileOverlays;
+  private List<Map<String, ?>> initialImageOverlays;
 
   FMFMapViewController(
     @NonNull Context context,
@@ -118,6 +120,7 @@ public final class FMFMapViewController implements
     this.poisController = new FMFPOIsController(context, methodChannel, density);
     this.buildingsController = new FMFBuildingsController(methodChannel, density);
     this.tileOverlaysController = new FMFTileOverlaysController(methodChannel);
+    this.imageOverlaysController = new FMFImageOverlaysController(methodChannel);
     this.directionsRenderersController = new FMFDirectionsRenderersController(methodChannel, density);
   }
 
@@ -170,6 +173,7 @@ public final class FMFMapViewController implements
     poisController.setMap(map4D);
     buildingsController.setMap(map4D);
     tileOverlaysController.setMap(map4D);
+    imageOverlaysController.setMap(map4D);
     directionsRenderersController.setMap(map4D);
     updateInitialCircles();
     updateInitialPolylines();
@@ -178,6 +182,7 @@ public final class FMFMapViewController implements
     updateInitialPOIs();
     updateInitialBuildings();
     updateInitialTileOverlays();
+    updateInitialImageOverlays();
     updateInitialDirectionsRenderers();
   }
 
@@ -463,6 +468,16 @@ public final class FMFMapViewController implements
         result.success(null);
         break;
       }
+      case "imageOverlays#update": {
+        List<Map<String, ?>> imageOverlaysToAdd = call.argument("imageOverlaysToAdd");
+        imageOverlaysController.addImageOverlays(imageOverlaysToAdd);
+        List<Map<String, ?>> imageOverlaysToChange = call.argument("imageOverlaysToChange");
+        imageOverlaysController.changeImageOverlays(imageOverlaysToChange);
+        List<String> imageOverlaysToRemove = call.argument("imageOverlayIdsToRemove");
+        imageOverlaysController.removeImageOverlays(imageOverlaysToRemove);
+        result.success(null);
+        break;
+      }
       case "directionsRenderers#update": {
         List<Object> directionsRenderersToAdd = call.argument("directionsRenderersToAdd");
         directionsRenderersController.addDirectionsRenderers(directionsRenderersToAdd);
@@ -738,6 +753,18 @@ public final class FMFMapViewController implements
 
   private void updateInitialTileOverlays() {
     tileOverlaysController.addTileOverlays(initialTileOverlays);
+  }
+
+  @Override
+  public void setInitialImageOverlays(List<Map<String, ?>> initialImageOverlays) {
+    this.initialImageOverlays = initialImageOverlays;
+    if (map4D != null) {
+      updateInitialImageOverlays();
+    }
+  }
+
+  private void updateInitialImageOverlays() {
+    imageOverlaysController.addImageOverlays(initialImageOverlays);
   }
 
   @Override

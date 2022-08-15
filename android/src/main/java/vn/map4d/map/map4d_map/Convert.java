@@ -791,4 +791,33 @@ class Convert {
       return tileOverlayId;
     }
   }
+
+  static String interpretImageOverlayOptions(Map<String, ?> data, FMFImageOverlaySink sink) {
+    final Object bounds = data.get("bounds");
+    if (bounds != null) {
+      sink.setBounds(toCoordinateBounds(bounds));
+    }
+    final Object image = data.get("image");
+    if (image != null) {
+      sink.setImage(toBitmapDescriptor(image));
+    }
+    final Object zIndex = data.get("zIndex");
+    if (zIndex != null) {
+      sink.setZIndex(toFloat(zIndex));
+    }
+    final Object visible = data.get("visible");
+    if (visible != null) {
+      sink.setVisible(toBoolean(visible));
+    }
+    final Object transparency = data.get("transparency");
+    if (transparency != null) {
+      sink.setOpacity(1.f - toFloat(transparency));
+    }
+    final String imageOverlayId = (String) data.get("imageOverlayId");
+    if (imageOverlayId == null) {
+      throw new IllegalArgumentException("imageOverlayId was null");
+    } else {
+      return imageOverlayId;
+    }
+  }
 }

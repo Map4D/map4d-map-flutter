@@ -38,6 +38,11 @@ class FMFTileOverlayBuilder implements FMFTileOverlaySink {
     tileOverlayOptions.tileProvider(tileProvider);
   }
 
+  @Override
+  public void setOpacity(float opacity) {
+    tileOverlayOptions.opacity(opacity);
+  }
+
   String getUrlPattern() {
     return urlPattern;
   }
