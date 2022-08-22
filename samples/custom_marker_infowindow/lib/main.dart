@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:map4d_map/map4d_map.dart';
 import 'package:clippy_flutter/triangle.dart';
 import 'custom_info_window.dart';
+import 'empty_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -100,6 +101,11 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _onPressedInfoWindowIcon(BuildContext context) {
+    _customInfoWindowController.hideInfoWindow!();
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const EmptyPage()));
+  }
+
   void _onMarkerTapped(final MFMarkerId markerId) {
     final marker = markers[markerId];
     if (marker == null) {
@@ -118,16 +124,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(
-                      Icons.account_circle,
-                      color: Colors.white,
-                      size: 30,
+                  children: [
+                    IconButton(
+                      onPressed: () => _onPressedInfoWindowIcon(context),
+                      icon: const Icon(
+                        Icons.account_circle,
+                        color: Colors.white,
+                        size: 30,
+                      ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 8.0,
                     ),
-                    Text("I am here")
+                    const Text("I am here"),
                   ],
                 ),
               ),
