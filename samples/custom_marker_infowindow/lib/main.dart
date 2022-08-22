@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:map4d_map/map4d_map.dart';
 import 'package:clippy_flutter/triangle.dart';
+import 'package:get/get.dart';
 import 'custom_info_window.dart';
 import 'empty_page.dart';
-import 'package:get/get.dart';
+import 'detail_page.dart';
 
 void main() {
   // runApp(const MyApp());
@@ -12,6 +13,7 @@ void main() {
     getPages: [
       GetPage(name: "/", page: () => const MyApp()),
       GetPage(name: "/empty", page: () => const EmptyPage()),
+      GetPage(name: "/detail", page: () => const DetailPage()),
     ],
   ));
 }
@@ -116,7 +118,8 @@ class _MyHomePageState extends State<MyHomePage> {
     if (Get.isSnackbarOpen) {
       Get.closeCurrentSnackbar();
     }
-    Get.toNamed("/empty", arguments: ["arg1"]);//Get.to(const EmptyPage());
+    //Get.to(const EmptyPage());
+    Get.toNamed("/detail", arguments: ["arg1"]);
   }
 
   void _onMarkerTapped(final MFMarkerId markerId) {
