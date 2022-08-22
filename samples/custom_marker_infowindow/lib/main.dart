@@ -3,9 +3,17 @@ import 'package:map4d_map/map4d_map.dart';
 import 'package:clippy_flutter/triangle.dart';
 import 'custom_info_window.dart';
 import 'empty_page.dart';
+import 'package:get/get.dart';
 
 void main() {
-  runApp(const MyApp());
+  // runApp(const MyApp());
+  runApp(GetMaterialApp(
+    initialRoute: "/",
+    getPages: [
+      GetPage(name: "/", page: () => const MyApp()),
+      GetPage(name: "/empty", page: () => const EmptyPage()),
+    ],
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -103,7 +111,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _onPressedInfoWindowIcon(BuildContext context) {
     _customInfoWindowController.hideInfoWindow!();
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const EmptyPage()));
+    // Navigator.of(context).push(MaterialPageRoute(builder: (context) => const EmptyPage()));
+    //
+    if (Get.isSnackbarOpen) {
+      Get.closeCurrentSnackbar();
+    }
+    Get.toNamed("/empty", arguments: ["arg1"]);//Get.to(const EmptyPage());
   }
 
   void _onMarkerTapped(final MFMarkerId markerId) {

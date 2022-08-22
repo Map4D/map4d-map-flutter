@@ -38,6 +38,7 @@ dependencies:
   # map4d_map: ^2.4.0
   map4d_map:
     path: ../../
+  get: ^4.6.1
 
 
 dev_dependencies:
