@@ -9,7 +9,7 @@
         android:icon="@mipmap/ic_launcher">
        <meta-data
            android:name="vn.map4d.map.ACCESS_KEY"
-           android:value="21cd52290058ceabc0933df3353a298e"/>
+           android:value="YOUR_MAP4D_MAP_ACCESS_KEY"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

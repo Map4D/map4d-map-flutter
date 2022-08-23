@@ -5,10 +5,10 @@
         android:icon="@mipmap/ic_launcher">
         <meta-data
           android:name="vn.map4d.map.ACCESS_KEY"
-          android:value="MAP4D_MAP_ACCESS_KEY"/>
+          android:value="YOUR_MAP4D_MAP_ACCESS_KEY"/>
         <meta-data
           android:name="vn.map4d.services.ACCESS_KEY"
-          android:value="MAP4D_SERVICES_ACCESS_KEY"/>
+          android:value="YOUR_MAP4D_SERVICES_ACCESS_KEY"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
