@@ -1,3 +1,11 @@
+## 2.4.2
+
+* Change lib from Map4dTypes to Map4dTypesV2 for Android platform.
+
+## 2.4.1
+
+* Remove jcenter() from repositories in build.gradle for Android platform.
+
 ## 2.4.0
 
 * Add MFImageOverlay to display image layer
