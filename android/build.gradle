@@ -14,11 +14,10 @@ buildscript {
 
 rootProject.allprojects {
     repositories {
-        google()
-        jcenter()
         maven {
             url = "https://packages.map4d.vn/repository/maven-public"
         }
+        google()
     }
 }
 
