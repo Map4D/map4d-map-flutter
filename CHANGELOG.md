@@ -1,3 +1,7 @@
+## 2.4.3
+
+* Revert lib from Map4dTypesV2 to Map4dTypes for Android platform.
+
 ## 2.4.2
 
 * Change lib from Map4dTypes to Map4dTypesV2 for Android platform.
