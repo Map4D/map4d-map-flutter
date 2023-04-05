@@ -30,6 +30,7 @@ class MFMapView extends StatefulWidget {
     Key? key,
     this.initialCameraPosition,
     this.onMapCreated,
+    this.gestureRecognizers = const <Factory<OneSequenceGestureRecognizer>>{},
     this.mapType = MFMapType.roadmap,
     this.minMaxZoomPreference = MFMinMaxZoom.unbounded,
     this.rotateGesturesEnabled = true,
@@ -93,6 +94,17 @@ class MFMapView extends StatefulWidget {
   /// Callback method for when the map is ready to be used.
   /// Used to receive a [MFMapViewController] for this [Map4dMap].
   final MFMapCreatedCallback? onMapCreated;
+
+  /// Which gestures should be consumed by the map.
+  ///
+  /// It is possible for other gesture recognizers to be competing with the map on pointer
+  /// events, e.g if the map is inside a [ListView] the [ListView] will want to handle
+  /// vertical drags. The map will claim gestures that are recognized by any of the
+  /// recognizers on this list.
+  ///
+  /// When this set is empty, the map will only handle pointer events for gestures that
+  /// were not claimed by any other gesture recognizer.
+  final Set<Factory<OneSequenceGestureRecognizer>> gestureRecognizers;
 
   /// The initial position of the map's camera.
   final MFCameraPosition? initialCameraPosition;
@@ -195,6 +207,7 @@ class _MFMapViewState extends State<MFMapView> {
       return AndroidView(
         viewType: viewType,
         onPlatformViewCreated: onPlatformViewCreated,
+        gestureRecognizers: widget.gestureRecognizers,
         creationParams: creationParams,
         creationParamsCodec: const StandardMessageCodec(),
       );
@@ -202,6 +215,7 @@ class _MFMapViewState extends State<MFMapView> {
       return UiKitView(
         viewType: viewType,
         onPlatformViewCreated: onPlatformViewCreated,
+        gestureRecognizers: widget.gestureRecognizers,
         creationParams: creationParams,
         creationParamsCodec: const StandardMessageCodec(),
       );
