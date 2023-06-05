@@ -147,6 +147,14 @@ class MFMapViewController {
     return MFCameraPosition.fromMap(cameraPosition);
   }
 
+  Future<double> getMetersForLogicalPixels(double lp) async {
+    return (await _channel.invokeMethod<double>('map#getMetersForLP', <String, dynamic>{'lp': lp}))!;
+  }
+
+  Future<double> getLogicalPixelsForMeters(double meters) async {
+    return (await _channel.invokeMethod<double>('map#getLPForMeters', <String, dynamic>{'meters': meters}))!;
+  }
+
   /// Return [MFLatLngBounds] defining the region that is visible in a map.
   Future<MFLatLngBounds?> getBounds() async {
     final Map<String, dynamic> latLngBounds =

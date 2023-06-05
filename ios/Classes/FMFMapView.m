@@ -306,6 +306,20 @@
       break;
     }
 
+    /* map # get meters for logical pixels */
+    case FMFMethodGetMetersForLP: {
+      double lp = [Map4dFLTConvert toDouble:call.arguments[@"lp"]];
+      result(@([_mapView metersForPoints:lp]));
+      break;
+    }
+
+    /* map # get logical pixels for meters */
+    case FMFMethodGetLPForMeters: {
+      double meters = [Map4dFLTConvert toDouble:call.arguments[@"meters"]];
+      result(@([_mapView pointsForMeters:meters]));
+      break;
+    }
+
     /* camera # move **/
     case FMFMethodMoveCamera: {
       MFCameraUpdate* cameraUpdate = [Map4dFLTConvert toCameraUpdate:call.arguments[@"cameraUpdate"]];
