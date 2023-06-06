@@ -37,6 +37,8 @@
       @"map#waitForMap": @(FMFMethodWaitForMap),
       @"map#getScreenCoordinate": @(FMFMethodGetScreenCoordinate),
       @"map#getLatLng": @(FMFMethodGetLatLng),
+      @"map#getMetersForLP": @(FMFMethodGetMetersForLP),
+      @"map#getLPForMeters": @(FMFMethodGetLPForMeters),
       /* camera **/
       @"camera#move": @(FMFMethodMoveCamera),
       @"camera#animate": @(FMFMethodAnimateCamera),

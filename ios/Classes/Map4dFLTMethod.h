@@ -45,6 +45,12 @@ typedef enum : NSUInteger {
   // map#getLatLng
   FMFMethodGetLatLng,
   
+  // map#getMetersForLP
+  FMFMethodGetMetersForLP,
+  
+  // map#getLPForMeters
+  FMFMethodGetLPForMeters,
+  
   // camera#move
   FMFMethodMoveCamera,
   

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
@@ -96,7 +98,7 @@ class _MyAppState extends State<MyApp> {
           ],
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: enable3Dmode,
+          onPressed: doAction,
           tooltip: "MODE",
           child: const Icon(Icons.mode_rounded),
         ),
@@ -142,17 +144,21 @@ class _MyAppState extends State<MyApp> {
     zoom.then((value) => print('zoom level: ' + value.toString()));
   }
 
-  void enable3Dmode() {
-    _is3DMode = !_is3DMode;
+  Future<void> doAction() async {
+    // _is3DMode = !_is3DMode;
     // _controller.enable3DMode(_is3DMode);
-    const p = MFScreenCoordinate(x: 100, y: 200);
-    _controller.getLatLng(p).then((latlng) {
-      print('Convert point ${p.toJson()} to latlng: ${latlng.toJson()}');
-      _controller.getScreenCoordinate(latlng).then((value) => {
-            print(
-                'Convert latlng: ${latlng.toJson()} to value: ${value.toJson()}')
-          });
-    });
+    // const p = MFScreenCoordinate(x: 100, y: 200);
+    // _controller.getLatLng(p).then((latlng) {
+    //   print('Convert point ${p.toJson()} to latlng: ${latlng.toJson()}');
+    //   _controller.getScreenCoordinate(latlng).then((value) => {
+    //         print(
+    //             'Convert latlng: ${latlng.toJson()} to value: ${value.toJson()}')
+    //       });
+    // });
+    final meters = Random().nextInt(200).toDouble();
+    final lp = await _controller.getLogicalPixelsForMeters(meters);
+    final mt = await _controller.getMetersForLogicalPixels(lp);
+    print("meters: $meters, lp: $lp, mt: $mt");
   }
 
   void onTap(MFLatLng coordinate) {
