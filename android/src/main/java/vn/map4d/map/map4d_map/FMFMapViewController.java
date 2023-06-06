@@ -488,6 +488,16 @@ public final class FMFMapViewController implements
         result.success(null);
         break;
       }
+      case "map#getMetersForLP": {
+        double lp = call.argument("lp");
+        result.success(map4D.getMeterFromDp(lp));
+        break;
+      }
+      case "map#getLPForMeters": {
+        double meters = call.argument("meters");
+        result.success(map4D.getDpFromMeter(meters));
+        break;
+      }
       default:
         result.notImplemented();
         break;

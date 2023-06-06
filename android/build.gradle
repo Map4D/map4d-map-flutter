@@ -33,5 +33,5 @@ android {
 
 dependencies {
     implementation 'vn.map4d:Map4dTypes:1.1.+'
-    implementation 'vn.map4d:Map4dMap:2.4.+'
+    implementation 'vn.map4d:Map4dMap:2.5.+'
 }
