@@ -300,8 +300,8 @@ public final class FMFMapViewController implements
       case "map#fitBounds": {
         if (map4D != null) {
           final MFCoordinateBounds bounds = Convert.toCoordinateBounds(call.argument("bounds"));
-          final int padding = call.argument("padding");
-          final MFCameraPosition cameraPosition = map4D.getCameraPositionForBounds(bounds, padding);
+          final Double padding = call.argument("padding");
+          final MFCameraPosition cameraPosition = map4D.getCameraPositionForBounds(bounds, padding.intValue());
           map4D.moveCamera(MFCameraUpdateFactory.newCameraPosition(cameraPosition));
           result.success(null);
         }
@@ -316,8 +316,8 @@ public final class FMFMapViewController implements
       case "map#cameraForBounds": {
         if (map4D != null) {
           final MFCoordinateBounds bounds = Convert.toCoordinateBounds(call.argument("bounds"));
-          final int padding = call.argument("padding");
-          MFCameraPosition cameraPosition = map4D.getCameraPositionForBounds(bounds, padding);
+          final Double padding = call.argument("padding");
+          MFCameraPosition cameraPosition = map4D.getCameraPositionForBounds(bounds, padding.intValue());
           result.success(Convert.cameraPositionToJson(cameraPosition));
         } else {
           result.error(
