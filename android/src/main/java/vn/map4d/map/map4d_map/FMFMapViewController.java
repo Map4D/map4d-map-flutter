@@ -300,8 +300,8 @@ public final class FMFMapViewController implements
       case "map#fitBounds": {
         if (map4D != null) {
           final MFCoordinateBounds bounds = Convert.toCoordinateBounds(call.argument("bounds"));
-          final int padding = call.argument("padding");
-          final MFCameraPosition cameraPosition = map4D.getCameraPositionForBounds(bounds, padding);
+          final Double padding = call.argument("padding");
+          final MFCameraPosition cameraPosition = map4D.getCameraPositionForBounds(bounds, padding.intValue());
           map4D.moveCamera(MFCameraUpdateFactory.newCameraPosition(cameraPosition));
           result.success(null);
         }
@@ -316,8 +316,8 @@ public final class FMFMapViewController implements
       case "map#cameraForBounds": {
         if (map4D != null) {
           final MFCoordinateBounds bounds = Convert.toCoordinateBounds(call.argument("bounds"));
-          final int padding = call.argument("padding");
-          MFCameraPosition cameraPosition = map4D.getCameraPositionForBounds(bounds, padding);
+          final Double padding = call.argument("padding");
+          MFCameraPosition cameraPosition = map4D.getCameraPositionForBounds(bounds, padding.intValue());
           result.success(Convert.cameraPositionToJson(cameraPosition));
         } else {
           result.error(
@@ -486,6 +486,16 @@ public final class FMFMapViewController implements
         List<Object> directionsRendererIdsToRemove = call.argument("directionsRendererIdsToRemove");
         directionsRenderersController.removeDirectionsRenderers(directionsRendererIdsToRemove);
         result.success(null);
+        break;
+      }
+      case "map#getMetersForLP": {
+        double lp = call.argument("lp");
+        result.success(map4D.getMeterFromDp(lp));
+        break;
+      }
+      case "map#getLPForMeters": {
+        double meters = call.argument("meters");
+        result.success(map4D.getDpFromMeter(meters));
         break;
       }
       default:
