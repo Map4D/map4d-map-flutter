@@ -28,12 +28,12 @@ class AutoSuggestSample extends StatefulWidget {
 }
 
 class _AutoSuggestSampleState extends State<AutoSuggestSample> {
-
   final Completer<MFMapViewController> _controller = Completer();
   List<ListTile> _listTile = <ListTile>[];
 
   static const MFLatLng _kDaNang = MFLatLng(16.071958, 108.225429);
-  static const MFCameraPosition _kInitialCameraPosition = MFCameraPosition(target: _kDaNang, zoom: 14);
+  static const MFCameraPosition _kInitialCameraPosition =
+      MFCameraPosition(target: _kDaNang, zoom: 14);
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +45,7 @@ class _AutoSuggestSampleState extends State<AutoSuggestSample> {
               initialCameraPosition: _kInitialCameraPosition,
               onMapCreated: (MFMapViewController controller) {
                 _controller.complete(controller);
-              }
-          ),
+              }),
           buildFloatingSearchBar()
         ],
       ),
@@ -59,7 +58,8 @@ class _AutoSuggestSampleState extends State<AutoSuggestSample> {
   }
 
   Widget buildFloatingSearchBar() {
-    final isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
+    final isPortrait =
+        MediaQuery.of(context).orientation == Orientation.portrait;
     return FloatingSearchBar(
       hint: 'Search...',
       scrollPadding: const EdgeInsets.only(top: 16, bottom: 56),
@@ -94,12 +94,11 @@ class _AutoSuggestSampleState extends State<AutoSuggestSample> {
         return ClipRRect(
           borderRadius: BorderRadius.circular(8),
           child: Material(
-            color: Colors.white,
-            elevation: 4.0,
-            child: Column(
-              children: _listTile,
-            )
-          ),
+              color: Colors.white,
+              elevation: 4.0,
+              child: Column(
+                children: _listTile,
+              )),
         );
       },
     );
@@ -120,7 +119,10 @@ class _AutoSuggestSampleState extends State<AutoSuggestSample> {
       print('Auto Suggest: $places');
       List<ListTile> list = <ListTile>[];
       for (var element in places) {
-        list.add(ListTile(title: Text(element.name), subtitle: Text(element.address),));
+        list.add(ListTile(
+          title: Text(element.name),
+          subtitle: Text(element.address),
+        ));
       }
       setState(() {
         _listTile = list;

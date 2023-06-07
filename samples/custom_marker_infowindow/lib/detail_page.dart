@@ -1,12 +1,9 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:map4d_map/map4d_map.dart';
 import 'package:clippy_flutter/triangle.dart';
 import 'custom_info_window.dart';
 
 class DetailPage extends StatefulWidget {
-
   const DetailPage({Key? key}) : super(key: key);
 
   @override
@@ -14,7 +11,6 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
-
   // MFBitmap? _markerIcon;
   Map<MFMarkerId, MFMarker> markers = <MFMarkerId, MFMarker>{};
   final CustomInfoWindowController _customInfoWindowController =

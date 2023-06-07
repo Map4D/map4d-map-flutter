@@ -1,6 +1,12 @@
+## 2.4.5
+
+* Support convert between logical pixels and meters
+* Upgrade Map4dMap SDK dependencies to 2.5
+* Fixed bugs
+
 ## 2.4.4
 
-* Add  gesture recognizers for MapView to move Map inside a Scroll View.
+* Add gesture recognizers for MapView to move Map inside a Scroll View.
 
 ## 2.4.3
 
