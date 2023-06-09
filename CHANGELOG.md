@@ -1,3 +1,7 @@
+## 2.4.6
+
+* Fixed bug method getCameraPosition() return null on Android platform when trackCameraPosition = false
+
 ## 2.4.5
 
 * Support convert between logical pixels and meters

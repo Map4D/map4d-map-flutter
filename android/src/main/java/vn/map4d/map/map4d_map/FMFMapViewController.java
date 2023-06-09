@@ -516,7 +516,7 @@ public final class FMFMapViewController implements
     if (map4D == null) {
       return null;
     }
-    return trackCameraPosition ? map4D.getCameraPosition() : null;
+    return map4D.getCameraPosition();
   }
 
   private void destroyMapViewIfNecessary() {
