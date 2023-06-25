@@ -11,6 +11,7 @@ import 'package:flutter/services.dart';
 import 'src/ui.dart';
 import 'src/location.dart';
 import 'src/screen_coordinate.dart';
+import 'src/data_source_feature.dart';
 import 'src/camera.dart';
 import 'src/callbacks.dart';
 import 'src/annotations/annotations.dart';
@@ -23,6 +24,8 @@ export 'src/location.dart' show MFLatLng, MFLatLngBounds;
 
 export 'src/screen_coordinate.dart' show MFScreenCoordinate;
 
+export 'src/data_source_feature.dart' show MFDataSourceFeature;
+
 export 'src/camera.dart' show MFCameraPosition, MFCameraUpdate;
 
 export 'src/callbacks.dart'
@@ -33,6 +36,7 @@ export 'src/callbacks.dart'
         MFMapPOICallback,
         MFMapBuildingCallback,
         MFMapPlaceCallback,
+        MFDataSourceFeatureCallback,
         MFDirectionsCallback;
 
 export 'src/annotations/annotations.dart'

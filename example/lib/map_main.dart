@@ -51,6 +51,7 @@ class _MyAppState extends State<MyApp> {
       onPOITap: onBaseMapPOITap,
       onBuildingTap: onBaseMapBuildingTap,
       onPlaceTap: onBaseMapPlaceTap,
+      onDataSourceFeatureTap: onDataSourceFeatureTap,
     );
 
     return MaterialApp(
@@ -183,5 +184,9 @@ class _MyAppState extends State<MyApp> {
 
   void onBaseMapPlaceTap(String name, MFLatLng location) {
     print('Tap on Place $name, location: $location');
+  }
+
+  void onDataSourceFeatureTap(MFDataSourceFeature feature, MFLatLng location) {
+    print('Tap on Data Source Feature $feature, location: $location');
   }
 }

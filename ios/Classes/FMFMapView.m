@@ -800,6 +800,19 @@
   [_channel invokeMethod:@"map#onTapPlace" arguments:arguments];
 }
 
+- (void)mapView:(MFMapView *)mapView didTapDataSourceFeature:(MFDataSourceFeature *)feature location:(CLLocationCoordinate2D)location {
+  NSDictionary *arguments = @{
+    @"feature": @{
+      @"source": feature.source,
+      @"sourceLayer": feature.sourceLayer,
+      @"layerType": feature.layerType,
+      @"properties": feature.properties
+    },
+    @"location": [Map4dFLTConvert locationToJson:location]
+  };
+  [_channel invokeMethod:@"map#onTapDataSourceFeature" arguments:arguments];
+}
+
 - (void)mapView:(MFMapView *)mapView didTapDirectionsRenderer:(MFDirectionsRenderer *)renderer routeIndex:(NSUInteger)routeIndex {
   NSString* rendererId = [_directionsRendererManager getDirectionsRendererId:renderer];
   if (rendererId != nil) {

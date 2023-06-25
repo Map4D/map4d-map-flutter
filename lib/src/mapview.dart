@@ -51,6 +51,7 @@ class MFMapView extends StatefulWidget {
     this.onPOITap,
     this.onBuildingTap,
     this.onPlaceTap,
+    this.onDataSourceFeatureTap,
     this.markers = const <MFMarker>{},
     this.circles = const <MFCircle>{},
     this.polygons = const <MFPolygon>{},
@@ -168,6 +169,9 @@ class MFMapView extends StatefulWidget {
 
   ///
   final MFMapPlaceCallback? onPlaceTap;
+
+  /// Called when user taps on the data source features
+  final MFDataSourceFeatureCallback? onDataSourceFeatureTap;
 }
 
 class _MFMapViewState extends State<MFMapView> {
