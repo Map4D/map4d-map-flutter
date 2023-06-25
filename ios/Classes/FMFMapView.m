@@ -519,6 +519,11 @@
   //    [sink setCameraTargetBounds:ToOptionalBounds(cameraTargetBounds)];
   //  }
   
+  id mapId = data[@"mapId"];
+  if (mapId && mapId != NSNull.null) {
+    [self setMapId:mapId];
+  }
+  
   id mapType = data[@"mapType"];
   if (mapType) {
     int type = [Map4dFLTConvert toInt:mapType];
@@ -606,6 +611,12 @@
 
 - (void)setPOIsEnabled:(BOOL)enabled {
   [_mapView setPOIsEnabled:enabled];
+}
+
+- (void)setMapId:(NSString *)mapId {
+  if ([mapId length] > 0) {
+    [_mapView setMapID:[MFMapID mapIDWithIdentifier:mapId]];
+  }
 }
 
 - (void)setMapType:(MFMapType)type {

@@ -31,6 +31,7 @@ class MFMapView extends StatefulWidget {
     this.initialCameraPosition,
     this.onMapCreated,
     this.gestureRecognizers = const <Factory<OneSequenceGestureRecognizer>>{},
+    this.mapId,
     this.mapType = MFMapType.roadmap,
     this.minMaxZoomPreference = MFMinMaxZoom.unbounded,
     this.rotateGesturesEnabled = true,
@@ -108,6 +109,9 @@ class MFMapView extends StatefulWidget {
 
   /// The initial position of the map's camera.
   final MFCameraPosition? initialCameraPosition;
+
+  /// An opaque identifier for a custom map configuration.
+  final String? mapId;
 
   /// Type of map tiles to be rendered.
   final MFMapType mapType;
@@ -464,11 +468,13 @@ class _MFMapViewOptions {
         myLocationButtonEnabled = map.myLocationButtonEnabled,
         buildingsEnabled = map.buildingsEnabled,
         poisEnabled = map.poisEnabled,
+        mapId = map.mapId,
         mapType = map.mapType,
         minMaxZoomPreference = map.minMaxZoomPreference,
         trackCameraPosition = map.onCameraMove != null;
 
   // final CameraTargetBounds cameraTargetBounds;
+  final String? mapId;
   final MFMapType mapType;
   final MFMinMaxZoom minMaxZoomPreference;
   final bool rotateGesturesEnabled;
@@ -483,7 +489,7 @@ class _MFMapViewOptions {
   final bool trackCameraPosition;
 
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
+    final Map<String, dynamic> map = <String, dynamic>{
       // 'cameraTargetBounds': cameraTargetBounds.toJson(),
       'mapType': mapType.index,
       'minMaxZoomPreference': minMaxZoomPreference.toJson(),
@@ -497,6 +503,12 @@ class _MFMapViewOptions {
       'buildingsEnabled': buildingsEnabled,
       'trackCameraPosition': trackCameraPosition,
     };
+
+    if (mapId != null) {
+      map["mapId"] = mapId;
+    }
+
+    return map;
   }
 
   Map<String, dynamic> updatesMap(_MFMapViewOptions newOptions) {

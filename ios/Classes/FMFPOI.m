@@ -42,7 +42,7 @@
 }
 
 - (void)setTitleColor:(UIColor*)color {
-  _poi.titleColor = color;
+  _poi.color = color;
 }
 
 - (void)setSubtitle:(NSString*)subtitle {

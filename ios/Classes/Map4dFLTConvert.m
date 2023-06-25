@@ -104,7 +104,7 @@
 + (MFCoordinateBounds*) toCoordinateBounds:(NSArray*)data {
   CLLocationCoordinate2D loc0 = [Map4dFLTConvert toLocation:data[0]];
   CLLocationCoordinate2D loc1 = [Map4dFLTConvert toLocation:data[1]];
-  return [[MFCoordinateBounds alloc] initWithCoordinate:loc0 coordinate1:loc1];
+  return [[MFCoordinateBounds alloc] initWithCoordinate:loc0 coordinate:loc1];
 }
 
 + (MFCameraPosition*)toCameraPosition:(NSDictionary*)data {

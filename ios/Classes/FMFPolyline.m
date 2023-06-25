@@ -60,7 +60,14 @@
 }
 
 - (void)setStyle:(MFPolylineStyle)style {
-  _polyline.style = style;
+  //_polyline.style = style;
+  if (style == MFPolylineStyleSolid) {
+    _polyline.strokePattern = MFStrokePattern.solid;
+  }
+  else {
+    CGFloat width = _polyline.width;
+    _polyline.strokePattern = [MFStrokePattern dashWithLength:width gap:width];
+  }
 }
 
 #pragma mark - Interpret Polyline Options
