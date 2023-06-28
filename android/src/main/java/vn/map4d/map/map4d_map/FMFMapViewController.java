@@ -77,6 +77,8 @@ public final class FMFMapViewController implements
   private boolean enable3DMode;
   private MFMapType mapType;
 
+  private String mapId;
+
   private MFCameraPosition initialCameraPosition;
 
   private final FMFCirclesController circlesController;
@@ -198,6 +200,9 @@ public final class FMFMapViewController implements
     }
     if (mapType != null) {
       map4D.setMapType(mapType);
+    }
+    if (mapId != null && !mapId.isEmpty()) {
+      map4D.setMapId(mapId);
     }
     map4D.setBuildingsEnabled(this.buildingsEnabled);
     map4D.setPOIsEnabled(this.poisEnabled);
@@ -567,6 +572,15 @@ public final class FMFMapViewController implements
       return;
     }
     map4D.setMapType(mapType);
+  }
+
+  @Override
+  public void setMapId(String mapId) {
+    this.mapId = mapId;
+    if (map4D == null) {
+      return;
+    }
+    map4D.setMapId(mapId);
   }
 
   @Override

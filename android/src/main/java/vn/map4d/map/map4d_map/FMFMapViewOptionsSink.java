@@ -10,6 +10,8 @@ public interface FMFMapViewOptionsSink {
 
   void setMapType(MFMapType mapType);
 
+  void setMapId(String mapId);
+
   void setMinMaxZoomPreference(Float min, Float max);
 
   void setRotateGesturesEnabled(boolean rotateGesturesEnabled);
