@@ -37,6 +37,7 @@ import vn.map4d.map.camera.MFCameraPosition;
 import vn.map4d.map.camera.MFCameraUpdate;
 import vn.map4d.map.camera.MFCameraUpdateFactory;
 import vn.map4d.map.core.MFCoordinateBounds;
+import vn.map4d.map.core.MFDataSourceFeature;
 import vn.map4d.map.core.MFMapType;
 import vn.map4d.map.core.MFMapView;
 import vn.map4d.map.core.Map4D;
@@ -230,6 +231,7 @@ public final class FMFMapViewController implements
     map4D.setOnMapClickListener(listener);
     map4D.setOnPlaceClickListener(listener);
     map4D.setOnDirectionsClickListener(listener);
+    map4D.setOnDataSourceFeatureClickListener(listener);
   }
 
   @Override
@@ -902,6 +904,19 @@ public final class FMFMapViewController implements
     arguments.put("name", name);
     arguments.put("location", Convert.latLngToJson(location));
     methodChannel.invokeMethod("map#onTapPlace", arguments);
+  }
+
+  @Override
+  public void onDataSourceFeatureClick(@NonNull MFDataSourceFeature dataSourceFeature, @NonNull MFLocationCoordinate location) {
+    final Map<String, Object> feature = new HashMap<>(4);
+    feature.put("source", dataSourceFeature.getSource());
+    feature.put("sourceLayer", dataSourceFeature.getSourceLayer());
+    feature.put("layerType", dataSourceFeature.getLayerType());
+    feature.put("properties", dataSourceFeature.getProperties());
+    final Map<String, Object> arguments = new HashMap<>(2);
+    arguments.put("feature", feature);
+    arguments.put("location", Convert.latLngToJson(location));
+    methodChannel.invokeMethod("map#onTapDataSourceFeature", arguments);
   }
 
   // DefaultLifecycleObserver
