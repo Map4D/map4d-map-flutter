@@ -18,4 +18,5 @@ public interface FMFMapViewListener
     Map4D.OnPlaceClickListener,
     Map4D.OnDirectionsClickListener,
     Map4D.OnMapClickListener,
-    Map4D.OnMarkerDragListener {}
+    Map4D.OnMarkerDragListener,
+    Map4D.OnDataSourceFeatureClickListener {}
