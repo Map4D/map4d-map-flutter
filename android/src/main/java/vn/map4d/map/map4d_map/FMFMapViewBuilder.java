@@ -33,6 +33,8 @@ class FMFMapViewBuilder implements FMFMapViewOptionsSink {
   private List<Map<String, ?>> initialTileOverlays;
   private List<Map<String, ?>> initialImageOverlays;
 
+  private String mapId;
+
   FMFMapViewController build(
     int id,
     Context context,
@@ -60,6 +62,9 @@ class FMFMapViewBuilder implements FMFMapViewOptionsSink {
     controller.setInitialImageOverlays(initialImageOverlays);
     controller.setInitialDirectionsRenderers(initialDirectionsRenderers);
     controller.setTrackCameraPosition(trackCameraPosition);
+    if (mapId != null && !mapId.isEmpty()) {
+      controller.setMapId(mapId);
+    }
     return controller;
   }
 
@@ -70,6 +75,11 @@ class FMFMapViewBuilder implements FMFMapViewOptionsSink {
   @Override
   public void setMapType(MFMapType mapType) {
     this.mapType = mapType;
+  }
+
+  @Override
+  public void setMapId(String mapId) {
+    this.mapId = mapId;
   }
 
   @Override
