@@ -1,28 +1,34 @@
+## 2.5.0
+
+* Allow set mapId for `MFMapView`
+* Add `onDataSourceFeatureTap` callback for `MFMapView`
+* Upgrade Map4dMap SDK dependencies to 2.6+
+
 ## 2.4.6
 
-* Fixed bug method getCameraPosition() return null on Android platform when trackCameraPosition = false
+* Fixed bug method `MFMapViewController.getCameraPosition()` return null on Android
 
 ## 2.4.5
 
 * Support convert between logical pixels and meters
-* Upgrade Map4dMap SDK dependencies to 2.5
+* Upgrade Map4dMap SDK dependencies to 2.5+
 * Fixed bugs
 
 ## 2.4.4
 
-* Add gesture recognizers for MapView to move Map inside a Scroll View.
+* Add gesture recognizers for MapView to move Map inside a Scroll View
 
 ## 2.4.3
 
-* Revert lib from Map4dTypesV2 to Map4dTypes for Android platform.
+* Revert lib from Map4dTypesV2 to Map4dTypes for Android platform
 
 ## 2.4.2
 
-* Change lib from Map4dTypes to Map4dTypesV2 for Android platform.
+* Change lib from Map4dTypes to Map4dTypesV2 for Android platform
 
 ## 2.4.1
 
-* Remove jcenter() from repositories in build.gradle for Android platform.
+* Remove jcenter() from repositories in build.gradle for Android platform
 
 ## 2.4.0
 
@@ -37,7 +43,7 @@
 
 ## 2.2.2
 
-* Override onPause() and onResume() for lifecycle.
+* Override onPause() and onResume() for lifecycle
 
 ## 2.2.1
 
@@ -84,4 +90,4 @@
 
 ## 1.0.0
 
-* Initial release.
+* Initial release
