@@ -16,6 +16,7 @@ import androidx.lifecycle.LifecycleOwner;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -255,6 +256,15 @@ public final class FMFMapViewController implements
         final MFCameraUpdate cameraUpdate =
           Convert.toCameraUpdate(call.argument("cameraUpdate"), density);
         animateCamera(cameraUpdate);
+        result.success(null);
+        break;
+      }
+      case "map#setTime": {
+        long timeByMillisecond = call.argument("time");
+        Date time = new Date(timeByMillisecond);
+        if (map4D != null && time != null) {
+          map4D.setTime(time);
+        }
         result.success(null);
         break;
       }

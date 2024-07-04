@@ -185,6 +185,10 @@ class MFMapViewController {
         <String, dynamic>{'bounds': bounds.toJson(), 'padding': padding});
   }
 
+  Future<void> setTime(DateTime time) {
+    return _channel.invokeMethod<void>('map#setTime', <String, Object>{'time': time.millisecondsSinceEpoch});
+  }
+
   @Deprecated(
       'This method was intended to set map type map 3D. It has been superseded by `MFMapView.mapType` property. This method is subject to removal in a future versions.')
   Future<void> enable3DMode(bool isEnable) {
