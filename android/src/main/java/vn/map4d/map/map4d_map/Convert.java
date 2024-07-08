@@ -225,6 +225,10 @@ class Convert {
     if (mapId != null) {
       sink.setMapId(toString(mapId));
     }
+    final Object style = data.get("style");
+    if (style != null) {
+      sink.setMapStyle(toString(style));
+    }
     final Object rotateGesturesEnabled = data.get("rotateGesturesEnabled");
     if (rotateGesturesEnabled != null) {
       sink.setRotateGesturesEnabled(toBoolean(rotateGesturesEnabled));
