@@ -278,10 +278,10 @@ public final class FMFMapViewController implements
         enable3DMode = call.argument("enable3DMode");
         if (map4D != null) {
           if (enable3DMode) {
-            map4D.setMapType(MFMapType.MAP3D);
+            map4D.setBuildingsEnabled(true);
           }
-          else if (map4D.getMapType() == MFMapType.MAP3D) {
-            map4D.setMapType(MFMapType.ROADMAP);
+          else if (map4D.isBuildingsEnabled()) {
+            map4D.setBuildingsEnabled(false);
           }
         }
         result.success(null);

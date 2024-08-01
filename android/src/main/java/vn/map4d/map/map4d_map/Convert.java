@@ -190,11 +190,9 @@ class Convert {
       case 0:
         return MFMapType.ROADMAP;
       case 1:
-        return MFMapType.RASTER;
-      case 2:
         return MFMapType.SATELLITE;
       default:
-        return MFMapType.MAP3D;
+        return MFMapType.HYBRID;
     }
   }
 
