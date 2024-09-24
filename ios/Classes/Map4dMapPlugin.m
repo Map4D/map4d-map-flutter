@@ -9,9 +9,8 @@
 
 #pragma mark - Map4dMapPlugin
 
-static Map4dMapPlugin *sharedInstance = nil;
-
 @interface Map4dMapPlugin()
+@property(nonatomic, strong) NSLock *lock;
 @property(nonatomic, strong, nonnull) NSPointerArray *mapFactories;// List reference of FMFMapViewFactory
 @end
 
@@ -29,9 +28,11 @@ gestureRecognizersBlockingPolicy:
 }
 
 + (Map4dMapPlugin *)instance {
-  if (sharedInstance == nil) {
+  static Map4dMapPlugin *sharedInstance = nil;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
     sharedInstance = [[super allocWithZone:NULL] init];
-  }
+  });
   return sharedInstance;
 }
 
@@ -41,6 +42,7 @@ gestureRecognizersBlockingPolicy:
 
 - (instancetype)init {
   if (self = [super init]) {
+    _lock = [[NSLock alloc] init];
     _mapFactories = [NSPointerArray weakObjectsPointerArray];
   }
   return self;
@@ -61,6 +63,7 @@ gestureRecognizersBlockingPolicy:
 }
 
 - (void)cleanFlutterMapViewReferences {
+  [_lock lock];
   NSInteger index = 0;
   while (index < _mapFactories.count) {
     FMFMapViewFactory* mapFactory = [_mapFactories pointerAtIndex:index];
@@ -72,6 +75,7 @@ gestureRecognizersBlockingPolicy:
       ++index;
     }
   }
+  [_lock unlock];
 }
 
 @end
