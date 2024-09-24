@@ -1,3 +1,7 @@
+## 2.5.1
+
+* Fixed bug map instance was not released properly on iOS
+
 ## 2.5.0
 
 * Allow set mapId for `MFMapView`
