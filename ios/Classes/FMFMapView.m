@@ -7,6 +7,7 @@
 
 
 #import "FMFMapView.h"
+#import "Map4dMapPlugin.h"
 #import "Map4dFLTConvert.h"
 #import "Map4dFLTMethod.h"
 #import "Map4dAnnotationManager.h"
@@ -15,6 +16,12 @@
 
 #define kMFMinZoomLevel 2
 #define kMFMaxZoomLevel 22
+
+#pragma mark - Map4dMapPlugin Extension
+
+@interface Map4dMapPlugin (Private)
+- (void)cleanFlutterMapViewReferences;
+@end
 
 #pragma mark - FMFMapView Extension
 
@@ -29,24 +36,37 @@
 
 @implementation FMFMapViewFactory {
   NSObject<FlutterPluginRegistrar>* _registrar;
-  NSMutableArray<FMFMapView*>* _flutterMapViews;
+  NSPointerArray *_flutterMapViews;// List reference of FMFMapView
 }
 
 - (instancetype)initWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
   if (self = [super init]) {
     _registrar = registrar;
-    _flutterMapViews = [NSMutableArray arrayWithCapacity:1];
+    _flutterMapViews = [NSPointerArray weakObjectsPointerArray];
   }
   return self;
 }
 
 - (id<FlutterPlatformView>)getFlutterMapViewById:(int64_t)viewId {
   for (FMFMapView* view in _flutterMapViews) {
-    if (view.viewId == viewId) {
+    if (view != nil && view.viewId == viewId) {
       return view;
     }
   }
   return  nil;
+}
+
+- (void)cleanFlutterMapViewReferences {
+  NSInteger index = 0;
+  while (index < _flutterMapViews.count) {
+    FMFMapView *view = [_flutterMapViews pointerAtIndex:index];
+    if (view == nil) {
+      [_flutterMapViews removePointerAtIndex:index];
+    }
+    else {
+      ++index;
+    }
+  }
 }
 
 - (NSObject<FlutterMessageCodec>*)createArgsCodec {
@@ -60,7 +80,7 @@
                                         viewIdentifier:viewId
                                              arguments:args
                                              registrar:_registrar];
-  [_flutterMapViews addObject:view];
+  [_flutterMapViews addPointer:(__bridge void * _Nullable)(view)];
   return view;
 }
 @end
@@ -88,6 +108,10 @@
   FlutterMethodChannel* _channel;
   NSObject<FlutterPluginRegistrar>* _registrar;
   FMFEventTracking* _track;
+}
+
+- (void)dealloc {
+  [Map4dMapPlugin.instance cleanFlutterMapViewReferences];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
