@@ -1,3 +1,8 @@
+## 2.5.2
+
+* Ensure thread safety when cleaning map view instances
+* Upgrade Map4dMap SDK dependencies to 2.7.2+ for iOS
+
 ## 2.5.1
 
 * Fixed bug map instance was not released properly on iOS
