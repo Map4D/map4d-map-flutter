@@ -156,10 +156,14 @@ class _MyAppState extends State<MyApp> {
     //             'Convert latlng: ${latlng.toJson()} to value: ${value.toJson()}')
     //       });
     // });
-    final meters = Random().nextInt(200).toDouble();
-    final lp = await _controller.getLogicalPixelsForMeters(meters);
-    final mt = await _controller.getMetersForLogicalPixels(lp);
-    print("meters: $meters, lp: $lp, mt: $mt");
+
+    // final meters = Random().nextInt(200).toDouble();
+    // final lp = await _controller.getLogicalPixelsForMeters(meters);
+    // final mt = await _controller.getMetersForLogicalPixels(lp);
+    // print("meters: $meters, lp: $lp, mt: $mt");
+    DateTime date = DateTime.now();
+    print('now: ${date.millisecondsSinceEpoch}');
+    _controller.setTime(date);
   }
 
   void onTap(MFLatLng coordinate) {
