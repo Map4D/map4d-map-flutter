@@ -18,6 +18,10 @@
   return data.intValue;
 }
 
++ (long)toLong:(NSNumber *)data {
+  return data.longValue;
+}
+
 + (double)toDouble:(NSNumber*)data {
   return data.doubleValue;
 }

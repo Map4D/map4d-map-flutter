@@ -16,6 +16,7 @@
 
 + (bool)toBool:(NSNumber*)data;
 + (int)toInt:(NSNumber*)data;
++ (long)toLong:(NSNumber*)data;
 + (double)toDouble:(NSNumber*)data;
 + (float)toFloat:(NSNumber*)data;
 + (CLLocationCoordinate2D)toLocation:(NSArray*)data;

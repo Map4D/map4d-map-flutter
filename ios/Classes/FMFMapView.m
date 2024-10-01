@@ -344,6 +344,15 @@
       break;
     }
 
+    /* map # setTime */
+    case FMFMethodSetTime: {
+      NSTimeInterval time = [Map4dFLTConvert toLong:call.arguments[@"time"]] / 1000.0;
+      NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:time];
+      [_mapView setTime:date];
+      result(nil);
+      break;
+    }
+
     /* camera # move **/
     case FMFMethodMoveCamera: {
       MFCameraUpdate* cameraUpdate = [Map4dFLTConvert toCameraUpdate:call.arguments[@"cameraUpdate"]];
