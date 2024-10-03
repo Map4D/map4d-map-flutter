@@ -32,6 +32,7 @@ class MFMapView extends StatefulWidget {
     this.onMapCreated,
     this.gestureRecognizers = const <Factory<OneSequenceGestureRecognizer>>{},
     this.mapId,
+    this.style,
     this.mapType = MFMapType.roadmap,
     this.minMaxZoomPreference = MFMinMaxZoom.unbounded,
     this.rotateGesturesEnabled = true,
@@ -113,6 +114,9 @@ class MFMapView extends StatefulWidget {
 
   /// An opaque identifier for a custom map configuration.
   final String? mapId;
+
+  /// The locally configured style for the map.
+  final String? style;
 
   /// Type of map tiles to be rendered.
   final MFMapType mapType;
@@ -473,12 +477,14 @@ class _MFMapViewOptions {
         buildingsEnabled = map.buildingsEnabled,
         poisEnabled = map.poisEnabled,
         mapId = map.mapId,
+        style = map.style,
         mapType = map.mapType,
         minMaxZoomPreference = map.minMaxZoomPreference,
         trackCameraPosition = map.onCameraMove != null;
 
   // final CameraTargetBounds cameraTargetBounds;
   final String? mapId;
+  final String? style;
   final MFMapType mapType;
   final MFMinMaxZoom minMaxZoomPreference;
   final bool rotateGesturesEnabled;
@@ -510,6 +516,10 @@ class _MFMapViewOptions {
 
     if (mapId != null) {
       map["mapId"] = mapId;
+    }
+
+    if (style != null) {
+      map["style"] = style;
     }
 
     return map;

@@ -190,11 +190,9 @@ class Convert {
       case 0:
         return MFMapType.ROADMAP;
       case 1:
-        return MFMapType.RASTER;
-      case 2:
         return MFMapType.SATELLITE;
       default:
-        return MFMapType.MAP3D;
+        return MFMapType.HYBRID;
     }
   }
 
@@ -224,6 +222,10 @@ class Convert {
     final Object mapId = data.get("mapId");
     if (mapId != null) {
       sink.setMapId(toString(mapId));
+    }
+    final Object style = data.get("style");
+    if (style != null) {
+      sink.setMapStyle(toString(style));
     }
     final Object rotateGesturesEnabled = data.get("rotateGesturesEnabled");
     if (rotateGesturesEnabled != null) {

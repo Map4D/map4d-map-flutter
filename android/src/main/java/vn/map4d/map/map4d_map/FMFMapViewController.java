@@ -39,6 +39,7 @@ import vn.map4d.map.camera.MFCameraUpdate;
 import vn.map4d.map.camera.MFCameraUpdateFactory;
 import vn.map4d.map.core.MFCoordinateBounds;
 import vn.map4d.map.core.MFDataSourceFeature;
+import vn.map4d.map.core.MFMapStyleOptions;
 import vn.map4d.map.core.MFMapType;
 import vn.map4d.map.core.MFMapView;
 import vn.map4d.map.core.Map4D;
@@ -80,6 +81,8 @@ public final class FMFMapViewController implements
   private MFMapType mapType;
 
   private String mapId;
+
+  private String style;
 
   private MFCameraPosition initialCameraPosition;
 
@@ -206,6 +209,9 @@ public final class FMFMapViewController implements
     if (mapId != null && !mapId.isEmpty()) {
       map4D.setMapId(mapId);
     }
+    if (style != null && !style.isEmpty()) {
+      map4D.setMapStyle(new MFMapStyleOptions(style));
+    }
     map4D.setBuildingsEnabled(this.buildingsEnabled);
     map4D.setPOIsEnabled(this.poisEnabled);
     map4D.getUiSettings().setZoomGesturesEnabled(zoomGesturesEnabled);
@@ -272,10 +278,10 @@ public final class FMFMapViewController implements
         enable3DMode = call.argument("enable3DMode");
         if (map4D != null) {
           if (enable3DMode) {
-            map4D.setMapType(MFMapType.MAP3D);
+            map4D.setBuildingsEnabled(true);
           }
-          else if (map4D.getMapType() == MFMapType.MAP3D) {
-            map4D.setMapType(MFMapType.ROADMAP);
+          else if (map4D.isBuildingsEnabled()) {
+            map4D.setBuildingsEnabled(false);
           }
         }
         result.success(null);
@@ -593,6 +599,15 @@ public final class FMFMapViewController implements
       return;
     }
     map4D.setMapId(mapId);
+  }
+
+  @Override
+  public void setMapStyle(String style) {
+    this.style = style;
+    if (map4D == null) {
+      return;
+    }
+    map4D.setMapStyle(new MFMapStyleOptions(style));
   }
 
   @Override
