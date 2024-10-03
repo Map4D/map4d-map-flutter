@@ -33,9 +33,6 @@ typedef enum : NSUInteger {
   // map#getBounds
   FMFMethodGetBounds,
   
-  // map#enable3DMode
-  FMFMethodEnable3DMode,
-  
   // map#waitForMap
   FMFMethodWaitForMap,
   

@@ -291,19 +291,6 @@
       });
       break;
     }
-
-    /* map # set 3D mode **/
-    case FMFMethodEnable3DMode: {
-      BOOL isEnable = [Map4dFLTConvert toBool:call.arguments[@"enable3DMode"]];
-      if (isEnable) {
-        _mapView.mapType = MFMapTypeMap3D;
-      }
-      else if (_mapView.mapType == MFMapTypeMap3D) {
-        _mapView.mapType = MFMapTypeRoadmap;
-      }
-      result(nil);
-      break;
-    }
       
     /* map # waitForMap */
     case FMFMethodWaitForMap: {

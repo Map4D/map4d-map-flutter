@@ -26,7 +26,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   bool _isMapCreated = false;
-  bool _is3DMode = false;
   late MFMapViewController _controller;
 
   @override
@@ -146,8 +145,6 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> doAction() async {
-    // _is3DMode = !_is3DMode;
-    // _controller.enable3DMode(_is3DMode);
     // const p = MFScreenCoordinate(x: 100, y: 200);
     // _controller.getLatLng(p).then((latlng) {
     //   print('Convert point ${p.toJson()} to latlng: ${latlng.toJson()}');

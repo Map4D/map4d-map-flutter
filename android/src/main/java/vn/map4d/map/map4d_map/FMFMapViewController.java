@@ -77,7 +77,6 @@ public final class FMFMapViewController implements
 
   private Float minZoomPreference = null;
   private Float maxZoomPreference = null;
-  private boolean enable3DMode;
   private MFMapType mapType;
 
   private String mapId;
@@ -270,19 +269,6 @@ public final class FMFMapViewController implements
         Date time = new Date(timeByMillisecond);
         if (map4D != null && time != null) {
           map4D.setTime(time);
-        }
-        result.success(null);
-        break;
-      }
-      case "map#enable3DMode": {
-        enable3DMode = call.argument("enable3DMode");
-        if (map4D != null) {
-          if (enable3DMode) {
-            map4D.setBuildingsEnabled(true);
-          }
-          else if (map4D.isBuildingsEnabled()) {
-            map4D.setBuildingsEnabled(false);
-          }
         }
         result.success(null);
         break;
