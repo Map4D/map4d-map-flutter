@@ -1,3 +1,7 @@
+## 2.6.0
+
+* Add setTime method for MFMapViewController
+
 ## 2.5.2
 
 * Ensure thread safety when cleaning map view instances
