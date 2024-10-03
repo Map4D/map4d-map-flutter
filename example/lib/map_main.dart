@@ -46,7 +46,6 @@ class _MyAppState extends State<MyApp> {
       myLocationEnabled: true,
       myLocationButtonEnabled: true,
       onTap: onTap,
-      onModeChange: onModeChange,
       onPOITap: onBaseMapPOITap,
       onBuildingTap: onBaseMapBuildingTap,
       onPlaceTap: onBaseMapPlaceTap,
@@ -165,14 +164,6 @@ class _MyAppState extends State<MyApp> {
 
   void onTap(MFLatLng coordinate) {
     print('Did tap ' + coordinate.toString());
-  }
-
-  void onModeChange(bool is3Dmode) {
-    var mode = '2D';
-    if (is3Dmode) {
-      mode = '3D';
-    }
-    print('Mode of map is: ' + mode);
   }
 
   void onBaseMapPOITap(String placeId, String name, MFLatLng location) {

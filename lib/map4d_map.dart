@@ -32,7 +32,6 @@ export 'src/callbacks.dart'
     show
         MFCameraPositionCallback,
         MFLatLngCallback,
-        MFModeChangedCallback,
         MFMapPOICallback,
         MFMapBuildingCallback,
         MFMapPlaceCallback,
