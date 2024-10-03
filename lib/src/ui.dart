@@ -1,18 +1,15 @@
 import 'dart:ui' show hashValues;
 
-/// Type of maps to display
+/// Type of map tiles to display
 enum MFMapType {
-  /// Roadmap maps, default
+  /// Roadmap tiles, default
   roadmap,
 
-  /// Raster maps
-  raster,
-
-  /// Satellite maps
+  /// Satellite imaging tiles
   satellite,
 
-  /// 3D maps
-  map3D,
+  /// Hybrid tiles
+  hybrid,
 }
 
 class MFMinMaxZoom {

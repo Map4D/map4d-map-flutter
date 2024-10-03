@@ -562,13 +562,10 @@
     int type = [Map4dFLTConvert toInt:mapType];
     switch (type) {
       case 1:
-        [self setMapType:MFMapTypeRaster];
-        break;
-      case 2:
         [self setMapType:MFMapTypeSatellite];
         break;
-      case 3:
-        [self setMapType:MFMapTypeMap3D];
+      case 2:
+        [self setMapType:MFMapTypeHybrid];
         break;
       default:
         [self setMapType:MFMapTypeRoadmap];
