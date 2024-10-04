@@ -1,6 +1,7 @@
 package vn.map4d.map.map4d_map;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Point;
@@ -536,6 +537,7 @@ public final class FMFMapViewController implements
     mapView = null;
   }
 
+  @SuppressLint("MissingPermission")
   private void updateMyLocationSettings() {
     if (hasLocationPermission()) {
       // The plugin doesn't add the location permission by default so that apps that don't need
