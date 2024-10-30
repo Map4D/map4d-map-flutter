@@ -18,4 +18,4 @@ typedef void MFMapPlaceCallback(String name, MFLatLng location);
 typedef void MFDirectionsCallback(int routeIndex);
 
 typedef void MFDataSourceFeatureCallback(
-    MFDataSourceFeature feature, MFLatLng location);
+    MFDataSourceFeature feature, MFLatLng? location);

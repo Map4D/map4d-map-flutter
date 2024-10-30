@@ -920,15 +920,17 @@ public final class FMFMapViewController implements
   }
 
   @Override
-  public void onDataSourceFeatureClick(@NonNull MFDataSourceFeature dataSourceFeature, @NonNull MFLocationCoordinate location) {
-    final Map<String, Object> feature = new HashMap<>(4);
+  public void onDataSourceFeatureClick(@NonNull MFDataSourceFeature dataSourceFeature, @Nullable MFLocationCoordinate location) {
+    final Map<String, Object> feature = new HashMap<>(6);
+    feature.put("id", dataSourceFeature.getId());
+    feature.put("name", dataSourceFeature.getName());
     feature.put("source", dataSourceFeature.getSource());
     feature.put("sourceLayer", dataSourceFeature.getSourceLayer());
     feature.put("layerType", dataSourceFeature.getLayerType());
     feature.put("properties", dataSourceFeature.getProperties());
     final Map<String, Object> arguments = new HashMap<>(2);
     arguments.put("feature", feature);
-    arguments.put("location", Convert.latLngToJson(location));
+    arguments.put("location", location != null ? Convert.latLngToJson(location) : null);
     methodChannel.invokeMethod("map#onTapDataSourceFeature", arguments);
   }
 

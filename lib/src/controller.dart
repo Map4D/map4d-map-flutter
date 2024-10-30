@@ -118,8 +118,8 @@ class MFMapViewController {
         if (onDataSourceFeatureTap != null) {
           final MFDataSourceFeature feature =
               MFDataSourceFeature.fromJson(call.arguments['feature'])!;
-          final MFLatLng location =
-              MFLatLng.fromJson(call.arguments['location'])!;
+          final MFLatLng? location =
+              MFLatLng.fromJson(call.arguments['location']);
           onDataSourceFeatureTap(feature, location);
         }
         break;
