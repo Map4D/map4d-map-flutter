@@ -921,7 +921,9 @@ public final class FMFMapViewController implements
 
   @Override
   public void onDataSourceFeatureClick(@NonNull MFDataSourceFeature dataSourceFeature, @NonNull MFLocationCoordinate location) {
-    final Map<String, Object> feature = new HashMap<>(4);
+    final Map<String, Object> feature = new HashMap<>(6);
+    feature.put("id", dataSourceFeature.getId());
+    feature.put("name", dataSourceFeature.getName());
     feature.put("source", dataSourceFeature.getSource());
     feature.put("sourceLayer", dataSourceFeature.getSourceLayer());
     feature.put("layerType", dataSourceFeature.getLayerType());

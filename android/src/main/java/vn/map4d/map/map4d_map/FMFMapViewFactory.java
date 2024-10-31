@@ -34,7 +34,13 @@ public class FMFMapViewFactory extends PlatformViewFactory {
 
   @Override
   public PlatformView create(Context context, int viewId, Object args) {
-    final Map<String, Object> creationParams = (Map<String, Object>) args;
+    final Map<String, Object> creationParams;
+    if (args instanceof Map) {
+      creationParams = (Map<String, Object>) args;
+    } else {
+      creationParams = new HashMap<>();
+    }
+
     final FMFMapViewBuilder builder = new FMFMapViewBuilder();
     Convert.interpretMap4dOptions(creationParams.get("options"), builder);
     if (creationParams.containsKey("initialCameraPosition")
