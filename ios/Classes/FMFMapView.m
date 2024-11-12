@@ -544,6 +544,11 @@
     [self setMapId:mapId];
   }
   
+  id style = data[@"style"];
+  if (style && style != NSNull.null) {
+    [_mapView setMapStyle:style];
+  }
+  
   id mapType = data[@"mapType"];
   if (mapType) {
     int type = [Map4dFLTConvert toInt:mapType];
