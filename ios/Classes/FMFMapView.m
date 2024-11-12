@@ -544,8 +544,9 @@
     [self setMapId:mapId];
   }
   
-  id style = data[@"style"];
-  if (style && style != NSNull.null) {
+  id styleJson = data[@"style"];
+  if (styleJson && styleJson != NSNull.null) {
+    MFMapStyle *style = [MFMapStyle styleWithJSONString:styleJson];
     [_mapView setMapStyle:style];
   }
   
