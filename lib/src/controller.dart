@@ -189,6 +189,11 @@ class MFMapViewController {
     return _channel.invokeMethod<void>('map#setTime', <String, Object>{'time': time.millisecondsSinceEpoch});
   }
 
+  Future<void> setSourceOpacity(String source, double opacity) {
+    return _channel.invokeMethod<void>('map#setSourceOpacity',
+        <String, dynamic>{'source': source, 'opacity': opacity});
+  }
+
   /// Clears the tile cache so that all tiles will be requested again from the
   /// [TileProvider].
   ///

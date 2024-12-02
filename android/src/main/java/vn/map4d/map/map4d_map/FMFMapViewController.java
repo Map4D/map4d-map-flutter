@@ -274,6 +274,15 @@ public final class FMFMapViewController implements
         result.success(null);
         break;
       }
+      case "map#setSourceOpacity": {
+        final String source = call.argument("source");
+        final double opacity = call.argument("opacity");
+        if (map4D != null) {
+          map4D.setSourceOpacity(source, opacity);
+        }
+        result.success(null);
+        break;
+      }
       case "map#getCameraPosition": {
         if (map4D != null) {
           result.success(Convert.cameraPositionToJson(getCameraPosition()));
