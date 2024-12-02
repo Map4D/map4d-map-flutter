@@ -138,6 +138,9 @@
   } else if ([update isEqualToString:@"newLatLngBounds"]) {
     MFCoordinateBounds* bounds = [Map4dFLTConvert toCoordinateBounds:data[1]];
     return [MFCameraUpdate fitBounds:bounds];
+  } else if ([update isEqualToString:@"newLatLngBoundsWithPadding"]) {
+    MFCoordinateBounds* bounds = [Map4dFLTConvert toCoordinateBounds:data[1]];
+    return [MFCameraUpdate fitBounds:bounds];
   } else if ([update isEqualToString:@"newLatLngZoom"]) {
     CLLocationCoordinate2D target = [Map4dFLTConvert toLocation:data[1]];
     float zoom = [Map4dFLTConvert toFloat:data[2]];
