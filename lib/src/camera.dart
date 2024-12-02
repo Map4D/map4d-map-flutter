@@ -125,6 +125,23 @@ class MFCameraUpdate {
     ]);
   }
 
+  static MFCameraUpdate newLatLngBoundsWithPadding(
+    MFLatLngBounds bounds, {
+    double paddingLeft = 0,
+    double paddingTop = 0,
+    double paddingRight = 0,
+    double paddingBottom = 0,
+  }) {
+    return MFCameraUpdate._(<Object>[
+      'newLatLngBoundsWithPadding',
+      bounds.toJson(),
+      paddingLeft,
+      paddingTop,
+      paddingRight,
+      paddingBottom,
+    ]);
+  }
+
   /// Returns a camera update that moves the camera target to the specified
   /// geographical location and zoom level.
   static MFCameraUpdate newLatLngZoom(MFLatLng latLng, double zoom) {

@@ -273,6 +273,14 @@ class Convert {
       case "newLatLngBounds":
         return MFCameraUpdateFactory.newCoordinateBounds(
           toCoordinateBounds(data.get(1)), toPixels(data.get(2), density));
+      case "newLatLngBoundsWithPadding":
+        return MFCameraUpdateFactory.newCoordinateBounds(
+          toCoordinateBounds(data.get(1)),
+          toPixels(data.get(2), density),
+          toPixels(data.get(3), density),
+          toPixels(data.get(4), density),
+          toPixels(data.get(5), density)
+        );
       case "newLatLngZoom":
         return MFCameraUpdateFactory.newCoordinateZoom(toCoordinate(data.get(1)), toFloat(data.get(2)));
       case "newLatLng":
