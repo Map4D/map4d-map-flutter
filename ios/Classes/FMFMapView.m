@@ -339,6 +339,13 @@
       result(nil);
       break;
     }
+      
+    /* map # setSourceOpacity */
+    case FMFMethodSetSourceOpacity: {
+      NSString *source = call.arguments[@"source"];
+      CGFloat opacity = [Map4dFLTConvert toDouble:call.arguments[@"opacity"]];
+      [_mapView setSource:source opacity:opacity];
+    }
 
     /* camera # move **/
     case FMFMethodMoveCamera: {

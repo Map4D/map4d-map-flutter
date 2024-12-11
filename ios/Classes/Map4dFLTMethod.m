@@ -39,6 +39,7 @@
       @"map#getMetersForLP": @(FMFMethodGetMetersForLP),
       @"map#getLPForMeters": @(FMFMethodGetLPForMeters),
       @"map#setTime": @(FMFMethodSetTime),
+      @"map#setSourceOpacity": @(FMFMethodSetSourceOpacity),
       /* camera **/
       @"camera#move": @(FMFMethodMoveCamera),
       @"camera#animate": @(FMFMethodAnimateCamera),

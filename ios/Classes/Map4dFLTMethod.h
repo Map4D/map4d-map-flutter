@@ -51,6 +51,9 @@ typedef enum : NSUInteger {
   // map#setTime
   FMFMethodSetTime,
   
+  // map#setSourceOpacity
+  FMFMethodSetSourceOpacity,
+  
   // camera#move
   FMFMethodMoveCamera,
   

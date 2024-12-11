@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
-  s.dependency 'Map4dMap', '~> 0.3.0'
+  s.dependency 'Map4dMap', '~> 0.3.4'
   s.static_framework = true
   s.platform = :ios, '9.3'
 
