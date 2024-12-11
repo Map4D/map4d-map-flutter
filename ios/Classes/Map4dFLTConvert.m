@@ -132,16 +132,25 @@
   if ([update isEqualToString:@"newCameraPosition"]) {
     MFCameraPosition* position = [Map4dFLTConvert toCameraPosition:data[1]];
     return [MFCameraUpdate setCamera:position];
-  } else if ([update isEqualToString:@"newLatLng"]) {
+  }
+  else if ([update isEqualToString:@"newLatLng"]) {
     CLLocationCoordinate2D location = [Map4dFLTConvert toLocation:data[1]];
     return [MFCameraUpdate setTarget:location];
-  } else if ([update isEqualToString:@"newLatLngBounds"]) {
+  }
+  else if ([update isEqualToString:@"newLatLngBounds"]) {
     MFCoordinateBounds* bounds = [Map4dFLTConvert toCoordinateBounds:data[1]];
-    return [MFCameraUpdate fitBounds:bounds];
-  } else if ([update isEqualToString:@"newLatLngBoundsWithPadding"]) {
+    CGFloat padding = [Map4dFLTConvert toDouble:data[2]];
+    return [MFCameraUpdate fitBounds:bounds withEdgeInsets:UIEdgeInsetsMake(padding, padding, padding, padding)];
+  }
+  else if ([update isEqualToString:@"newLatLngBoundsWithPadding"]) {
     MFCoordinateBounds* bounds = [Map4dFLTConvert toCoordinateBounds:data[1]];
-    return [MFCameraUpdate fitBounds:bounds];
-  } else if ([update isEqualToString:@"newLatLngZoom"]) {
+    CGFloat left = [Map4dFLTConvert toDouble:data[2]];
+    CGFloat top = [Map4dFLTConvert toDouble:data[3]];
+    CGFloat right = [Map4dFLTConvert toDouble:data[4]];
+    CGFloat bottom = [Map4dFLTConvert toDouble:data[5]];
+    return [MFCameraUpdate fitBounds:bounds withEdgeInsets:UIEdgeInsetsMake(top, left, bottom, right)];
+  }
+  else if ([update isEqualToString:@"newLatLngZoom"]) {
     CLLocationCoordinate2D target = [Map4dFLTConvert toLocation:data[1]];
     float zoom = [Map4dFLTConvert toFloat:data[2]];
     return [MFCameraUpdate setTarget:target zoom:zoom];
