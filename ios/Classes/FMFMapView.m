@@ -345,6 +345,8 @@
       NSString *source = call.arguments[@"source"];
       CGFloat opacity = [Map4dFLTConvert toDouble:call.arguments[@"opacity"]];
       [_mapView setSource:source opacity:opacity];
+      result(nil);
+      break;
     }
 
     /* camera # move **/
