@@ -1,4 +1,4 @@
-import 'dart:ui' show hashValues, Offset;
+import 'dart:ui' show Offset;
 import 'package:flutter/foundation.dart' show VoidCallback;
 import 'package:flutter/foundation.dart' show ValueChanged;
 import 'package:meta/meta.dart' show immutable;
@@ -73,7 +73,7 @@ class MFInfoWindow {
   }
 
   @override
-  int get hashCode => hashValues(title.hashCode, snippet, anchor);
+  int get hashCode => Object.hash(title.hashCode, snippet, anchor);
 }
 
 @immutable

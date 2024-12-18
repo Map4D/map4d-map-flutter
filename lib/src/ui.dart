@@ -1,5 +1,3 @@
-import 'dart:ui' show hashValues;
-
 /// Type of map tiles to display
 enum MFMapType {
   /// Roadmap tiles, default
@@ -40,7 +38,7 @@ class MFMinMaxZoom {
   }
 
   @override
-  int get hashCode => hashValues(minZoom, maxZoom);
+  int get hashCode => Object.hash(minZoom, maxZoom);
 
   @override
   String toString() {
