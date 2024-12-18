@@ -1,4 +1,3 @@
-import 'dart:ui' show hashValues, Offset;
 import 'location.dart';
 
 class MFCameraPosition {
@@ -90,7 +89,7 @@ class MFCameraPosition {
   }
 
   @override
-  int get hashCode => hashValues(bearing, target, tilt, zoom);
+  int get hashCode => Object.hash(bearing, target, tilt, zoom);
 
   @override
   String toString() =>

@@ -1,4 +1,3 @@
-import 'dart:ui' show hashValues;
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart' show immutable;
 
@@ -103,5 +102,5 @@ class MFTileOverlay implements MapsObject {
 
   @override
   int get hashCode =>
-      hashValues(tileOverlayId, urlPattern, transparency, zIndex, visible);
+      Object.hash(tileOverlayId, urlPattern, transparency, zIndex, visible);
 }

@@ -1,4 +1,3 @@
-import 'dart:ui' show hashValues;
 import 'package:meta/meta.dart';
 
 class MFLatLng {
@@ -46,7 +45,7 @@ class MFLatLng {
   }
 
   @override
-  int get hashCode => hashValues(latitude, longitude);
+  int get hashCode => Object.hash(latitude, longitude);
 }
 
 class MFLatLngBounds {
@@ -115,5 +114,5 @@ class MFLatLngBounds {
   }
 
   @override
-  int get hashCode => hashValues(southwest, northeast);
+  int get hashCode => Object.hash(southwest, northeast);
 }
