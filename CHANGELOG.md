@@ -1,3 +1,7 @@
+## 2.5.3
+
+* Replace hashValues, hashList by Object.hash, Object.hashAll
+
 ## 2.5.2
 
 * Ensure thread safety when cleaning map view instances
