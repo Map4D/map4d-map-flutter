@@ -1,6 +1,7 @@
 ## 2.6.0
 
 * Add setTime method for MFMapViewController
+* [iOS] Remove bitcode
 
 ## 2.5.3
 
