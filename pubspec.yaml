@@ -6,7 +6,7 @@ repository: https://github.com/map4d/map4d-map-flutter
 issue_tracker: https://github.com/map4d/map4d-map-flutter/issues
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.14.0 <3.0.0"
   flutter: ">=1.22.0"
 
 dependencies:

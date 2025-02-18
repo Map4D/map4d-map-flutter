@@ -1,4 +1,3 @@
-import 'dart:ui' show hashValues;
 import 'package:flutter/foundation.dart';
 import 'package:map4d_map/map4d_map.dart';
 import 'package:meta/meta.dart' show immutable;
@@ -101,5 +100,5 @@ class MFImageOverlay implements MapsObject {
 
   @override
   int get hashCode =>
-      hashValues(imageOverlayId, image, bounds, transparency, zIndex, visible);
+      Object.hash(imageOverlayId, image, bounds, transparency, zIndex, visible);
 }
