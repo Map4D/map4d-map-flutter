@@ -60,7 +60,7 @@ class FMFPOIController implements FMFPOIOptionsSink {
 
   @Override
   public void setTitleColor(int titleColor) {
-    poi.setTitleColor(titleColor);
+    poi.setColor(titleColor);
   }
 
   @Override
