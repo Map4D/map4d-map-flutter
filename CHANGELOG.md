@@ -7,6 +7,11 @@
 ## 2.6.0
 
 * Add setTime method for MFMapViewController
+* [iOS] Remove bitcode
+
+## 2.5.3
+
+* Replace hashValues, hashList by Object.hash, Object.hashAll
 
 ## 2.5.2
 
