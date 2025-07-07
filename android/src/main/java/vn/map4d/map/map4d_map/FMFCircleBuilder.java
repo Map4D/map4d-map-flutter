@@ -25,6 +25,7 @@ class FMFCircleBuilder implements FMFCircleOptionsSink {
   @Override
   public void setConsumeTapEvents(boolean consumeTapEvents) {
     this.consumeTapEvents = consumeTapEvents;
+    circleOptions.touchable(consumeTapEvents);
   }
 
   @Override

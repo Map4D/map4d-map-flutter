@@ -13,12 +13,14 @@ import java.util.Map;
 import io.flutter.view.FlutterMain;
 import vn.map4d.map.annotations.MFBitmapDescriptor;
 import vn.map4d.map.annotations.MFBitmapDescriptorFactory;
+import vn.map4d.map.annotations.MFDashPattern;
+import vn.map4d.map.annotations.MFPatternItem;
+import vn.map4d.map.annotations.MFSolidPattern;
 import vn.map4d.map.camera.MFCameraPosition;
 import vn.map4d.map.camera.MFCameraUpdate;
 import vn.map4d.map.camera.MFCameraUpdateFactory;
 import vn.map4d.map.core.MFCoordinateBounds;
 import vn.map4d.map.core.MFMapType;
-import vn.map4d.map.core.MFPolylineStyle;
 import vn.map4d.types.MFLocationCoordinate;
 
 /** Conversions between JSON-like values and Map4D data types. **/
@@ -190,21 +192,19 @@ class Convert {
       case 0:
         return MFMapType.ROADMAP;
       case 1:
-        return MFMapType.RASTER;
-      case 2:
         return MFMapType.SATELLITE;
       default:
-        return MFMapType.MAP3D;
+        return MFMapType.HYBRID;
     }
   }
 
-  static MFPolylineStyle toPolylineStyle(Object o) {
+  static MFPatternItem toPolylinePattern(Object o, int width) {
     final int style = toInt(o);
     switch (style) {
       case 1:
-        return MFPolylineStyle.Dotted;
+        return new MFDashPattern(width, width);
       default:
-        return MFPolylineStyle.Solid;
+        return new MFSolidPattern();
     }
   }
 
@@ -224,6 +224,10 @@ class Convert {
     final Object mapId = data.get("mapId");
     if (mapId != null) {
       sink.setMapId(toString(mapId));
+    }
+    final Object style = data.get("style");
+    if (style != null) {
+      sink.setMapStyle(toString(style));
     }
     final Object rotateGesturesEnabled = data.get("rotateGesturesEnabled");
     if (rotateGesturesEnabled != null) {
@@ -271,6 +275,14 @@ class Convert {
       case "newLatLngBounds":
         return MFCameraUpdateFactory.newCoordinateBounds(
           toCoordinateBounds(data.get(1)), toPixels(data.get(2), density));
+      case "newLatLngBoundsWithPadding":
+        return MFCameraUpdateFactory.newCoordinateBounds(
+          toCoordinateBounds(data.get(1)),
+          toPixels(data.get(2), density),
+          toPixels(data.get(3), density),
+          toPixels(data.get(4), density),
+          toPixels(data.get(5), density)
+        );
       case "newLatLngZoom":
         return MFCameraUpdateFactory.newCoordinateZoom(toCoordinate(data.get(1)), toFloat(data.get(2)));
       case "newLatLng":
@@ -491,13 +503,15 @@ class Convert {
     if (visible != null) {
       sink.setVisible(toBoolean(visible));
     }
+    final Object widthObject = data.get("width");
+    Integer width = null;
+    if (widthObject != null) {
+      width = toInt(widthObject);
+      sink.setWidth(width.floatValue());
+    }
     final Object style = data.get("style");
     if (style != null) {
-      sink.setStyle(toPolylineStyle(style));
-    }
-    final Object width = data.get("width");
-    if (width != null) {
-      sink.setWidth(toInt(width));
+      sink.setPattern(toPolylinePattern(style, width != null ? width.intValue() : 10 /** 10 is default width **/));
     }
     final Object zIndex = data.get("zIndex");
     if (zIndex != null) {

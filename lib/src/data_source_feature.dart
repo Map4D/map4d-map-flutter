@@ -1,6 +1,10 @@
 class MFDataSourceFeature {
   const MFDataSourceFeature(
-      this.source, this.sourceLayer, this.layerType, this.properties);
+    this.source,
+    this.sourceLayer,
+    this.layerType,
+    this.properties,
+  );
 
   final String source;
   final String sourceLayer;
@@ -12,7 +16,11 @@ class MFDataSourceFeature {
       return null;
     }
 
-    return MFDataSourceFeature(json['source'], json['sourceLayer'],
-        json['layerType'], Map<String, dynamic>.from(json['properties']));
+    return MFDataSourceFeature(
+      json['source'],
+      json['sourceLayer'],
+      json['layerType'],
+      Map<String, dynamic>.from(json['properties']),
+    );
   }
 }

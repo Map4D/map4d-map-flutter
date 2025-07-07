@@ -2,7 +2,7 @@ package vn.map4d.map.map4d_map;
 
 import java.util.List;
 
-import vn.map4d.map.core.MFPolylineStyle;
+import vn.map4d.map.annotations.MFPatternItem;
 import vn.map4d.types.MFLocationCoordinate;
 
 /** Receiver of Polyline configuration options. */
@@ -14,7 +14,7 @@ interface FMFPolylineOptionsSink {
 
   void setPoints(List<MFLocationCoordinate> points);
 
-  void setStyle(MFPolylineStyle style);
+  void setPattern(MFPatternItem pattern);
 
   void setVisible(boolean visible);
 

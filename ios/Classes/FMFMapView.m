@@ -291,19 +291,6 @@
       });
       break;
     }
-
-    /* map # set 3D mode **/
-    case FMFMethodEnable3DMode: {
-      BOOL isEnable = [Map4dFLTConvert toBool:call.arguments[@"enable3DMode"]];
-      if (isEnable) {
-        _mapView.mapType = MFMapTypeMap3D;
-      }
-      else if (_mapView.mapType == MFMapTypeMap3D) {
-        _mapView.mapType = MFMapTypeRoadmap;
-      }
-      result(nil);
-      break;
-    }
       
     /* map # waitForMap */
     case FMFMethodWaitForMap: {
@@ -349,6 +336,15 @@
       NSTimeInterval time = [Map4dFLTConvert toLong:call.arguments[@"time"]] / 1000.0;
       NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:time];
       [_mapView setTime:date];
+      result(nil);
+      break;
+    }
+      
+    /* map # setSourceOpacity */
+    case FMFMethodSetSourceOpacity: {
+      NSString *source = call.arguments[@"source"];
+      CGFloat opacity = [Map4dFLTConvert toDouble:call.arguments[@"opacity"]];
+      [_mapView setSource:source opacity:opacity];
       result(nil);
       break;
     }
@@ -557,18 +553,21 @@
     [self setMapId:mapId];
   }
   
+  id styleJson = data[@"style"];
+  if (styleJson && styleJson != NSNull.null) {
+    MFMapStyle *style = [MFMapStyle styleWithJSONString:styleJson];
+    [_mapView setMapStyle:style];
+  }
+  
   id mapType = data[@"mapType"];
   if (mapType) {
     int type = [Map4dFLTConvert toInt:mapType];
     switch (type) {
       case 1:
-        [self setMapType:MFMapTypeRaster];
-        break;
-      case 2:
         [self setMapType:MFMapTypeSatellite];
         break;
-      case 3:
-        [self setMapType:MFMapTypeMap3D];
+      case 2:
+        [self setMapType:MFMapTypeHybrid];
         break;
       default:
         [self setMapType:MFMapTypeRoadmap];

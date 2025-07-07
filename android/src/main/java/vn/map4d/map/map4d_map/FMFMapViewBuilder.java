@@ -35,6 +35,8 @@ class FMFMapViewBuilder implements FMFMapViewOptionsSink {
 
   private String mapId;
 
+  private String style;
+
   FMFMapViewController build(
     int id,
     Context context,
@@ -65,6 +67,9 @@ class FMFMapViewBuilder implements FMFMapViewOptionsSink {
     if (mapId != null && !mapId.isEmpty()) {
       controller.setMapId(mapId);
     }
+    if (style != null && !style.isEmpty()) {
+      controller.setMapStyle(style);
+    }
     return controller;
   }
 
@@ -80,6 +85,11 @@ class FMFMapViewBuilder implements FMFMapViewOptionsSink {
   @Override
   public void setMapId(String mapId) {
     this.mapId = mapId;
+  }
+
+  @Override
+  public void setMapStyle(String style) {
+    this.style = style;
   }
 
   @Override

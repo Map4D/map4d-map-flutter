@@ -189,11 +189,9 @@ class MFMapViewController {
     return _channel.invokeMethod<void>('map#setTime', <String, Object>{'time': time.millisecondsSinceEpoch});
   }
 
-  @Deprecated(
-      'This method was intended to set map type map 3D. It has been superseded by `MFMapView.mapType` property. This method is subject to removal in a future versions.')
-  Future<void> enable3DMode(bool isEnable) {
-    return _channel.invokeMethod<bool>(
-        'map#enable3DMode', <String, Object>{'enable3DMode': isEnable});
+  Future<void> setSourceOpacity(String source, double opacity) {
+    return _channel.invokeMethod<void>('map#setSourceOpacity',
+        <String, dynamic>{'source': source, 'opacity': opacity});
   }
 
   /// Clears the tile cache so that all tiles will be requested again from the

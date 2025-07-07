@@ -27,7 +27,7 @@ class Map4dSample extends StatefulWidget {
 class _Map4dSampleState extends State<Map4dSample> {
   
   Completer<MFMapViewController> _controller = Completer();
-  bool _is3dMode = false;
+  MFMapType _mapType = MFMapType.roadmap;
 
   static final MFLatLng _kLandmark81 = MFLatLng(10.794630856464138, 106.72229460050636);
   static final MFCameraPosition _kInitialCameraPosition = MFCameraPosition(target: _kLandmark81, zoom: 16);
@@ -36,6 +36,7 @@ class _Map4dSampleState extends State<Map4dSample> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: MFMapView(
+        mapType: _mapType,
         initialCameraPosition: _kInitialCameraPosition,
         onMapCreated: (MFMapViewController controller) {
           _controller.complete(controller);
@@ -43,9 +44,9 @@ class _Map4dSampleState extends State<Map4dSample> {
         onPOITap: _onPOITap,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _switch3dMode,
-        tooltip: '3D Mode',
-        child: Icon(Icons.threed_rotation),
+        onPressed: _mapTypeToggler,
+        tooltip: 'Map Type',
+        child: Icon(Icons.map_outlined),
       ),
     );
   }
@@ -54,10 +55,23 @@ class _Map4dSampleState extends State<Map4dSample> {
     print('Tap on place: $placeId, name: $name, location: $location');
   }
 
-  void _switch3dMode() async {
-    final MFMapViewController controller = await _controller.future;
-    _is3dMode = !_is3dMode;
-    controller.enable3DMode(_is3dMode);
+  void _mapTypeToggler() async {    
+    var newType = MFMapType.roadmap;
+    switch (_mapType) {
+      case MFMapType.roadmap:
+        newType = MFMapType.satellite;
+        break;
+      case MFMapType.satellite:
+        newType = MFMapType.hybrid;
+        break;
+      case MFMapType.hybrid:
+        newType = MFMapType.roadmap;
+        break;
+    }
+
+    setState(() {
+      _mapType = newType;
+    });
   }
 }
 ```

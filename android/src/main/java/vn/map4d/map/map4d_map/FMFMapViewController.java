@@ -1,6 +1,7 @@
 package vn.map4d.map.map4d_map;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Point;
@@ -39,6 +40,7 @@ import vn.map4d.map.camera.MFCameraUpdate;
 import vn.map4d.map.camera.MFCameraUpdateFactory;
 import vn.map4d.map.core.MFCoordinateBounds;
 import vn.map4d.map.core.MFDataSourceFeature;
+import vn.map4d.map.core.MFMapStyleOptions;
 import vn.map4d.map.core.MFMapType;
 import vn.map4d.map.core.MFMapView;
 import vn.map4d.map.core.Map4D;
@@ -76,10 +78,11 @@ public final class FMFMapViewController implements
 
   private Float minZoomPreference = null;
   private Float maxZoomPreference = null;
-  private boolean enable3DMode;
   private MFMapType mapType;
 
   private String mapId;
+
+  private String style;
 
   private MFCameraPosition initialCameraPosition;
 
@@ -206,6 +209,9 @@ public final class FMFMapViewController implements
     if (mapId != null && !mapId.isEmpty()) {
       map4D.setMapId(mapId);
     }
+    if (style != null && !style.isEmpty()) {
+      map4D.setMapStyle(new MFMapStyleOptions(style));
+    }
     map4D.setBuildingsEnabled(this.buildingsEnabled);
     map4D.setPOIsEnabled(this.poisEnabled);
     map4D.getUiSettings().setZoomGesturesEnabled(zoomGesturesEnabled);
@@ -268,15 +274,11 @@ public final class FMFMapViewController implements
         result.success(null);
         break;
       }
-      case "map#enable3DMode": {
-        enable3DMode = call.argument("enable3DMode");
+      case "map#setSourceOpacity": {
+        final String source = call.argument("source");
+        final double opacity = call.argument("opacity");
         if (map4D != null) {
-          if (enable3DMode) {
-            map4D.setMapType(MFMapType.MAP3D);
-          }
-          else if (map4D.getMapType() == MFMapType.MAP3D) {
-            map4D.setMapType(MFMapType.ROADMAP);
-          }
+          map4D.setSourceOpacity(source, opacity);
         }
         result.success(null);
         break;
@@ -544,6 +546,7 @@ public final class FMFMapViewController implements
     mapView = null;
   }
 
+  @SuppressLint("MissingPermission")
   private void updateMyLocationSettings() {
     if (hasLocationPermission()) {
       // The plugin doesn't add the location permission by default so that apps that don't need
@@ -593,6 +596,15 @@ public final class FMFMapViewController implements
       return;
     }
     map4D.setMapId(mapId);
+  }
+
+  @Override
+  public void setMapStyle(String style) {
+    this.style = style;
+    if (map4D == null) {
+      return;
+    }
+    map4D.setMapStyle(new MFMapStyleOptions(style));
   }
 
   @Override
@@ -918,7 +930,9 @@ public final class FMFMapViewController implements
 
   @Override
   public void onDataSourceFeatureClick(@NonNull MFDataSourceFeature dataSourceFeature, @NonNull MFLocationCoordinate location) {
-    final Map<String, Object> feature = new HashMap<>(4);
+    final Map<String, Object> feature = new HashMap<>(6);
+    feature.put("id", dataSourceFeature.getId());
+    feature.put("name", dataSourceFeature.getName());
     feature.put("source", dataSourceFeature.getSource());
     feature.put("sourceLayer", dataSourceFeature.getSourceLayer());
     feature.put("layerType", dataSourceFeature.getLayerType());

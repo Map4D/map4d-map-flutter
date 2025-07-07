@@ -11,7 +11,7 @@ class FMFTileProviderController implements MFTileProvider {
   }
 
   @Override
-  public String getTile(int x, int y, int zoom, boolean is3DMode) {
+  public String getTile(int x, int y, int zoom) {
     if (patternUrl == null) {
       return null;
     }

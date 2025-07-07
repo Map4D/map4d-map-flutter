@@ -1,3 +1,9 @@
+## Next
+
+* Add `hybrid` map type & removed `raster`, `map3D` map type
+* Removed the `enable3DMode` method from `MFMapViewController`
+* Remove `MFMapView.onModeChange` callback
+
 ## 2.6.0
 
 * Add setTime method for MFMapViewController

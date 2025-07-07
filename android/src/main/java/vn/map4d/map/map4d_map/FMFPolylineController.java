@@ -2,8 +2,8 @@ package vn.map4d.map.map4d_map;
 
 import java.util.List;
 
+import vn.map4d.map.annotations.MFPatternItem;
 import vn.map4d.map.annotations.MFPolyline;
-import vn.map4d.map.core.MFPolylineStyle;
 import vn.map4d.types.MFLocationCoordinate;
 
 /** Controller of a single Polyline on the map. */
@@ -46,8 +46,8 @@ class FMFPolylineController implements FMFPolylineOptionsSink {
   }
 
   @Override
-  public void setStyle(MFPolylineStyle style) {
-    polyline.setStyle(style);
+  public void setPattern(MFPatternItem pattern) {
+    polyline.setPattern(pattern);
   }
 
   @Override
