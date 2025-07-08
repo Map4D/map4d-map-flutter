@@ -1,5 +1,7 @@
 ## Next
 
+## 3.0.1
+
 * [Android] Support AGP v8
 
 ## 3.0.0
