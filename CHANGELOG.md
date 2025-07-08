@@ -1,3 +1,8 @@
+## 2.6.1
+
+* Upgrade Map4dMap Native SDK dependencies
+* [Android] Support AGP v8
+
 ## 2.6.0
 
 * Add setTime method for MFMapViewController

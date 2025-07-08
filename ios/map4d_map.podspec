@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'map4d_map'
-  s.version          = '2.6.0'
+  s.version          = '2.6.1'
   s.summary          = 'Map4dMap SDK for Flutter'
   s.description      = <<-DESC
   A Flutter plugin that provides a MFMapView widget.
@@ -12,9 +12,9 @@ Pod::Spec.new do |s|
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
-  s.dependency 'Map4dMap', '~> 2.8.0'
+  s.dependency 'Map4dMap', '~> 2.8.2'
   s.static_framework = true
-  s.platform = :ios, '11.0'
+  s.platform = :ios, '12.0'
 
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }

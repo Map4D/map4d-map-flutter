@@ -33,7 +33,7 @@ android {
 
 ### iOS
 
-Required iOS 11.0 or higher
+Required iOS 12.0 or higher
 
 ## Setup API key
 
@@ -75,6 +75,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

@@ -24,8 +24,8 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
+    namespace "vn.map4d.map.map4d_map"
     compileSdkVersion 30
-
     defaultConfig {
         minSdkVersion 21
     }
@@ -33,5 +33,5 @@ android {
 
 dependencies {
     implementation 'vn.map4d:Map4dTypes:1.1.+'
-    implementation 'vn.map4d:Map4dMap:2.6.+'
+    implementation 'vn.map4d:Map4dMap:2.7.+'
 }
