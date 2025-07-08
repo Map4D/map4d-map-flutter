@@ -1,5 +1,7 @@
 ## Next
 
+* [Android] Support AGP v8
+
 ## 3.0.0
 
 Changed the approach to 3D mode.
@@ -16,7 +18,6 @@ This feature is supported on both `roadmap` and `hybrid` map types, allowing ful
 * The map type `raster`, `map3D` has been removed
 * The `enable3DMode` method has been removed from `MFMapViewController`. 3D buildings can now be shown using the `buildingsEnabled` property of the `MFMapView` widget
 * The `onModeChange` callback has been removed from the `MFMapView` widget
-
 
 ## 2.6.0
 

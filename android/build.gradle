@@ -8,7 +8,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.0'
+        classpath 'com.android.tools.build:gradle:8.1.0'
     }
 }
 
@@ -24,8 +24,8 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
+    namespace "vn.map4d.map.map4d_map"
     compileSdkVersion 33
-
     defaultConfig {
         minSdkVersion 21
     }
