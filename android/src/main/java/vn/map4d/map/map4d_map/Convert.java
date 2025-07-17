@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import io.flutter.view.FlutterMain;
+import io.flutter.embedding.engine.loader.FlutterLoader;
 import vn.map4d.map.annotations.MFBitmapDescriptor;
 import vn.map4d.map.annotations.MFBitmapDescriptorFactory;
 import vn.map4d.map.annotations.MFDashPattern;
@@ -25,6 +25,12 @@ import vn.map4d.types.MFLocationCoordinate;
 
 /** Conversions between JSON-like values and Map4D data types. **/
 class Convert {
+  private static FlutterLoader flutterLoader;
+
+  static void setFlutterLoader(FlutterLoader loader) {
+    flutterLoader = loader;
+  }
+
 
   // TODO : FlutterMain has been deprecated and should be replaced with FlutterLoader
   //  when it's available in Stable channel: https://github.com/flutter/flutter/issues/70923.
@@ -36,10 +42,10 @@ class Convert {
         return MFBitmapDescriptorFactory.defaultMarker();
       case "fromAssetImage":
         if (data.size() == 3) {
-          return MFBitmapDescriptorFactory.fromAsset(FlutterMain.getLookupKeyForAsset(toString(data.get(1))));
+          return MFBitmapDescriptorFactory.fromAsset(flutterLoader.getLookupKeyForAsset(toString(data.get(1))));
         } else {
           throw new IllegalArgumentException(
-            "'fromAssetImage' Expected exactly 3 arguments, got: " + data.size());
+                  "'fromAssetImage' Expected exactly 3 arguments, got: " + data.size());
         }
       case "fromBytes":
         return getBitmapFromBytes(data);
@@ -58,8 +64,8 @@ class Convert {
       }
     } else {
       throw new IllegalArgumentException(
-        "fromBytes should have exactly one argument, interpretTileOverlayOptions the bytes. Got: "
-          + data.size());
+              "fromBytes should have exactly one argument, interpretTileOverlayOptions the bytes. Got: "
+                      + data.size());
     }
   }
 
@@ -214,8 +220,8 @@ class Convert {
     if (minMaxZoomPreference != null) {
       final List<?> zoomPreferenceData = toList(minMaxZoomPreference);
       sink.setMinMaxZoomPreference( //
-        toFloatWrapper(zoomPreferenceData.get(0)), //
-        toFloatWrapper(zoomPreferenceData.get(1)));
+              toFloatWrapper(zoomPreferenceData.get(0)), //
+              toFloatWrapper(zoomPreferenceData.get(1)));
     }
     final Object mapType = data.get("mapType");
     if (mapType != null) {
@@ -274,14 +280,14 @@ class Convert {
         return MFCameraUpdateFactory.newCameraPosition(toCameraPosition(data.get(1)));
       case "newLatLngBounds":
         return MFCameraUpdateFactory.newCoordinateBounds(
-          toCoordinateBounds(data.get(1)), toPixels(data.get(2), density));
+                toCoordinateBounds(data.get(1)), toPixels(data.get(2), density));
       case "newLatLngBoundsWithPadding":
         return MFCameraUpdateFactory.newCoordinateBounds(
-          toCoordinateBounds(data.get(1)),
-          toPixels(data.get(2), density),
-          toPixels(data.get(3), density),
-          toPixels(data.get(4), density),
-          toPixels(data.get(5), density)
+                toCoordinateBounds(data.get(1)),
+                toPixels(data.get(2), density),
+                toPixels(data.get(3), density),
+                toPixels(data.get(4), density),
+                toPixels(data.get(5), density)
         );
       case "newLatLngZoom":
         return MFCameraUpdateFactory.newCoordinateZoom(toCoordinate(data.get(1)), toFloat(data.get(2)));
@@ -345,7 +351,7 @@ class Convert {
     data.put("polygonId", polygonId);
     return data;
   }
-  
+
   static Object markerIdToJson(String markerId) {
     if (markerId == null) {
       return null;
@@ -665,7 +671,7 @@ class Convert {
   }
 
   private static void interpretInfoWindowOptions(
-    FMFMarkerOptionsSink sink, Map<String, Object> infoWindow) {
+          FMFMarkerOptionsSink sink, Map<String, Object> infoWindow) {
     String title = (String) infoWindow.get("title");
     String snippet = (String) infoWindow.get("snippet");
     if (title != null) {
