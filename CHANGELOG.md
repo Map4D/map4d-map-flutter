@@ -1,5 +1,9 @@
 ## Next
 
+## 3.0.2
+
+* [Android] Use Map4dMap SDK v3.2.+ (>=3.2.7)
+
 ## 3.0.1
 
 * [Android] Support AGP v8
