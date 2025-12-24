@@ -30,37 +30,6 @@ public class FMFMapViewPlugin implements FlutterPlugin, ActivityAware, MethodCal
 
   private static final String VIEW_TYPE = "plugin:map4d-map-view-type";
 
-  @SuppressWarnings("deprecation")
-  public static void registerWith(
-    final io.flutter.plugin.common.PluginRegistry.Registrar registrar) {
-    final Activity activity = registrar.activity();
-    if (activity == null) {
-      // When a background flutter view tries to register the plugin, the registrar has no activity.
-      // We stop the registration process as this plugin is foreground only.
-      return;
-    }
-    if (activity instanceof LifecycleOwner) {
-      registrar
-        .platformViewRegistry()
-        .registerViewFactory(
-          VIEW_TYPE,
-          new FMFMapViewFactory(
-            registrar.messenger(),
-            new LifecycleProvider() {
-              @Override
-              public Lifecycle getLifecycle() {
-                return ((LifecycleOwner) activity).getLifecycle();
-              }
-            }));
-    } else {
-      registrar
-        .platformViewRegistry()
-        .registerViewFactory(
-          VIEW_TYPE,
-          new FMFMapViewFactory(registrar.messenger(), new ProxyLifecycleProvider(activity)));
-    }
-  }
-
   public FMFMapViewPlugin() {}
   
   @Override

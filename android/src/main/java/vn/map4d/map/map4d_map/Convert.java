@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import io.flutter.view.FlutterMain;
+import io.flutter.FlutterInjector;
 import vn.map4d.map.annotations.MFBitmapDescriptor;
 import vn.map4d.map.annotations.MFBitmapDescriptorFactory;
 import vn.map4d.map.annotations.MFDashPattern;
@@ -25,9 +25,6 @@ import vn.map4d.types.MFLocationCoordinate;
 
 /** Conversions between JSON-like values and Map4D data types. **/
 class Convert {
-
-  // TODO : FlutterMain has been deprecated and should be replaced with FlutterLoader
-  //  when it's available in Stable channel: https://github.com/flutter/flutter/issues/70923.
   @SuppressWarnings("deprecation")
   private static MFBitmapDescriptor toBitmapDescriptor(Object o) {
     final List<?> data = toList(o);
@@ -36,7 +33,8 @@ class Convert {
         return MFBitmapDescriptorFactory.defaultMarker();
       case "fromAssetImage":
         if (data.size() == 3) {
-          return MFBitmapDescriptorFactory.fromAsset(FlutterMain.getLookupKeyForAsset(toString(data.get(1))));
+          return MFBitmapDescriptorFactory.fromAsset(
+                  FlutterInjector.instance().flutterLoader().getLookupKeyForAsset(toString(data.get(1))));
         } else {
           throw new IllegalArgumentException(
             "'fromAssetImage' Expected exactly 3 arguments, got: " + data.size());
